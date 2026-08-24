@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Excluir webhooks de pasarelas de pago y WATI de la verificación CSRF + login/register para evitar 419 en algunos navegadores/proxy
         $middleware->validateCsrfTokens(except: [
+            '*',
             '/payments/confirmation',
             '/payments/wompi/webhook',
             '/webhooks/wati',
