@@ -16,6 +16,16 @@ Client.ADMIN_MODULES_FILES = '/admin/cursos/modulos/archivos';
 Client.ADMIN_EXAMS = '/admin/cursos/modulos';
 Client.ADMIN_SUBSCRIPCIONS = '/admin/suscripciones';
 Client.ADMIN_ORDERS = '/admin/ordenes';
+Client.simulacrosUrl = () => {
+    try {
+        // @ts-ignore
+        const inertia = (window as any).__inertia_page;
+        if (inertia?.props?.simulacrosUrl) return inertia.props.simulacrosUrl;
+        // @ts-ignore
+        if ((window as any).Laravel?.simulacrosUrl) return (window as any).Laravel.simulacrosUrl;
+    } catch {}
+    return '/simulacros';
+};
 
 Client.getHeaders = () => {
     return {
