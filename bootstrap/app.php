@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state', 'XSRF-TOKEN']);
 
-        // Excluir webhooks de pasarelas de pago y WATI de la verificación CSRF
+        // Excluir webhooks de pasarelas de pago y WATI de la verificación CSRF + login/register para evitar 419 en algunos navegadores/proxy
         $middleware->validateCsrfTokens(except: [
             '/payments/confirmation',
             '/payments/wompi/webhook',
@@ -30,6 +30,8 @@ return Application::configure(basePath: dirname(__DIR__))
             '/webhooks/wati/*',
             '/api/wati/*',
             '/logout',
+            '/login',
+            '/register',
             '/iniciar',
             '/guardar-progreso',
             '/enviar',
