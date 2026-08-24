@@ -23,6 +23,10 @@ Client.simulacrosUrl = () => {
         if (inertia?.props?.simulacrosUrl) return inertia.props.simulacrosUrl;
         // @ts-ignore
         if ((window as any).Laravel?.simulacrosUrl) return (window as any).Laravel.simulacrosUrl;
+        // fallback: construir subdominio si estamos en meritoconstruyendoexcelencia.com
+        if (typeof window !== 'undefined' && window.location.host.includes('meritoconstruyendoexcelencia.com')) {
+            return 'https://simulacros.meritoconstruyendoexcelencia.com';
+        }
     } catch {}
     return '/simulacros';
 };
