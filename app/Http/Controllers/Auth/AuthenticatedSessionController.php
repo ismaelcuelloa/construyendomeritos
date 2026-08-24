@@ -76,7 +76,7 @@ class AuthenticatedSessionController extends Controller
                 $route = 'admin';
             }
 
-            return redirect($route)->with('X-Inertia-Location', url($route));
+            return Inertia::location('/' . $route);
         }
 
         // Si NO es force_logout, validar credenciales y verificar sesión activa
@@ -127,8 +127,7 @@ class AuthenticatedSessionController extends Controller
             $route = 'admin';
         }
 
-        // Forzar una carga completa de la página para actualizar datos del usuario
-        return redirect($route)->with('X-Inertia-Location', url($route));
+        return Inertia::location('/' . $route);
     }
 
     /**
@@ -153,8 +152,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
         $request->session()->flush();
 
-        // Forzar redirección completa sin Inertia para limpiar cache del cliente
-        return redirect('/')->with('X-Inertia-Location', url('/'));
+        return Inertia::location('/');
     }
 
     /**
