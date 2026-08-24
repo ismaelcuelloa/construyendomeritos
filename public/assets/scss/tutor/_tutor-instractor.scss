@@ -1,0 +1,114 @@
+aside[tutor-instructors-filters] {
+    .tutor-widget-title {
+        font-weight: 700;
+     }
+     .tutor-widget-content label {
+        font-size: 15px;
+        color: var(--color-body);
+        font-weight: 400;
+    }
+}
+ 
+.tutor-btn-show-more {
+    .tutor-toggle-btn-text {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-primary);
+        .tutor-toggle-btn-icon{
+            &.tutor-icon.tutor-icon-plus {
+                font-size: 14px;
+                font-weight: 700;
+                color: var(--color-primary);
+            }
+        }
+        
+    }
+}
+
+
+#tutor-instructor-relevant-sort+ .dropdown-toggle {
+     padding:8px 20px;
+     &::after {
+        font-size: 16px;
+        opacity: 0.5;
+    }
+}
+ 
+.teacher-row-gutter {
+    main div:nth-child(2) .tutor-mr-16+div {
+        width: 25%;
+    }
+    .tutor-pagination {
+        border: 1px solid var(--color-border);
+    }
+}
+ 
+.tutor-instructors {
+    .tutor-widget-course-ratings {
+        margin-top: 32px;
+    }
+    .tutor-widget-course-categories {
+        margin-top: 35px!important;
+    }
+}
+ 
+ .tutor-instructor-list-wrapper {
+    .tutor-pagination {
+        ul.tutor-pagination-numbers {
+            .page-numbers {
+                background: var(--color-white);
+                border-radius: 6px;
+                text-align: center;
+                transition: 0.4s;
+                font-weight: 500;
+                box-shadow: var(--shadow-1);
+                color: var(--color-body);
+                width:40px;
+                height:40px;
+                &:hover ,&.current {
+                    background: var(--color-primary);
+                    color: var(--color-white);
+                }
+                &.current::before {
+                    transform: scaleY(0);
+                }
+                &.prev,&.next {
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+                .tutor-icon-angle-right,
+                .tutor-icon-angle-left {
+                    font-size: 14px;
+                }
+                
+            }
+        }
+        padding: 7px 10px;
+    }
+   
+ }
+ 
+ .tutor-pagination-hints > div {
+     color: var(--color-body);
+     .tutor-color-black {
+        opacity: 0.8
+    }
+ }
+
+ label[for="tutor-instructor-relevant-sort"] {
+     display: block;
+     margin-top: -3px;
+ }
+
+@media only screen and ( max-width: 991px ) {
+    .teacher-row-gutter main div:nth-child(2) .tutor-mr-16+div {
+        width: 60%;
+    }
+}
+
+@media only screen and ( max-width: 767px ) {
+    .team-style-default.style-three .inner .thumbnail, 
+    .rbt-default-card.style-three .inner .thumbnail {
+        border-radius: 10px;
+    }
+}

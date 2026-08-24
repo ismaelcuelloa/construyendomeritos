@@ -1,0 +1,47 @@
+:root {
+    --primary-color: #133a54;
+}
+
+.active-dark-mode {
+    .bh-text-black {
+        --tw-text-opacity: 1;
+        color: var(--foreground);
+
+        thead {
+            color: rgb(14 23 38 / var(--tw-text-opacity));
+        }
+    }
+
+    .bh-table-responsive table.bh-table-hover tbody tr:hover {
+        --tw-bg-opacity: 0.08;
+    }
+
+    .bh-table-responsive table.bh-table-striped tbody tr:nth-child(odd) {
+        background-color: var(--color-darker);
+    }
+
+    .bh-table-responsive table tbody tr {
+        border: none;
+    }
+
+    .bh-bg-blue-light\/50 {
+        background-color: #151515e0;
+    }
+
+    .\!bh-bg-white {
+        background-color: transparent !important;
+    }
+
+    .bh-skeleton-box {
+        --tw-bg-opacity: 0.08;
+    }
+}
+
+.bh-pagination .bh-page-item.bh-active {
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.bh-text-primary {
+    color: var(--primary-color) !important;
+}

@@ -1,0 +1,31 @@
+# Construyendo Méritos con Excelencia - Robots.txt
+# Optimizado para SEO - Procuraduría General de la Nación 2026
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /mis_compras
+Disallow: /mis_cursos
+Disallow: /settings/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+Disallow: /verify-email
+Disallow: /storage/
+Disallow: /files/
+Disallow: /*.json$
+Disallow: /*?*search=
+Disallow: /*?*per_page=
+
+# Allow CSS and JS for better rendering
+Allow: /assets/
+Allow: /build/
+Allow: /*.css$
+Allow: /*.js$
+
+# Sitemap location
+Sitemap: https://meritoconstruyendoexcelencia.com/sitemap.xml
+
+# Crawl delay (opcional)
+Crawl-delay: 1

@@ -1,0 +1,1 @@
+sass --watch rtl.scss:../../css/rtl.css

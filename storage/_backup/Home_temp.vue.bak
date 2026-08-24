@@ -1,0 +1,345 @@
+﻿<script setup lang="ts">
+import SeoHead from '@/components/SeoHead.vue';
+import type { Course, Paginated } from '@/types/project';
+import AppWebLayout from '@/layouts/AppWebLayout.vue';
+import { Link, router, usePage } from '@inertiajs/vue3';
+import { computed, ref, watch } from 'vue';
+import { BarChart3, Briefcase, Hash, RotateCcw, Search, Users, DollarSign, BookOpen, Building2, ChevronRight, BadgeCheck } from 'lucide-vue-next';
+
+interface Props {
+    courses: Paginated<Course>;
+    niveles: string[];
+    filters: {
+        codigo?: string;
+        grado?: string;
+        nivel?: string;
+        educacion?: string;
+        cargo?: string;
+        ubicacion?: string;
+        salario_min?: string;
+        salario_max?: string;
+        per_page?: number;
+    };
+}
+
+const props = defineProps<Props>();
+const page = usePage();
+const seoImage = (page.props as any).seo?.image;
+
+const codigo = ref(props.filters.codigo || '');
+const grado = ref(props.filters.grado || '');
+const nivel = ref(props.filters.nivel || '');
+const educacion = ref(props.filters.educacion || '');
+const cargo = ref(props.filters.cargo || '');
+const ubicacion = ref(props.filters.ubicacion || '');
+const salarioMinimo = ref(props.filters.salario_min || '');
+const salarioMaximo = ref(props.filters.salario_max || '');
+const perPage = ref(props.filters.per_page || 25);
+
+const search = () => {
+    router.get('/', {
+        codigo: codigo.value || undefined,
+        grado: grado.value || undefined,
+        nivel: nivel.value || undefined,
+        educacion: educacion.value || undefined,
+        cargo: cargo.value || undefined,
+        ubicacion: ubicacion.value || undefined,
+        salario_min: salarioMinimo.value || undefined,
+        salario_max: salarioMaximo.value || undefined,
+        per_page: perPage.value || undefined,
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+    });
+};
+
+const clearFilters = () => {
+    codigo.value = '';
+    grado.value = '';
+    nivel.value = '';
+    educacion.value = '';
+    cargo.value = '';
+    ubicacion.value = '';
+    salarioMinimo.value = '';
+    salarioMaximo.value = '';
+    perPage.value = 25;
+    search();
+};
+
+const handlePage = (url: string | null) => {
+    if (url) {
+        router.get(url, {}, { preserveState: true, preserveScroll: true });
+    }
+};
+
+const formatPrice = (price: number) => {
+    return '$' + price.toLocaleString('es-CO');
+};
+
+watch(perPage, () => search());
+
+const seguro = (page.props as any).auth?.user;
+</script>
+
+<template>
+    <SeoHead
+        title="Convocatorias 2026 - Procuraduría General de la Nación"
+        description="Encuentra materiales de estudio, simulacros, cursos y convocatorias actualizadas para concursos públicos en Colombia."
+        :url="page.url"
+        type="website"
+        :image="seoImage"
+    />
+    <AppWebLayout>
+        <div class="app">
+            <!-- ===== HERO ===== -->
+            <section class="hero">
+                <div class="hero__bg">
+                    <div class="hero__gradient"></div>
+                    <div class="hero__grid"></div>
+                    <div class="hero__orb hero__orb--1"></div>
+                    <div class="hero__orb hero__orb--2"></div>
+                </div>
+                <div class="hero__content">
+                    <div class="hero__badge">
+                        <BadgeCheck :size="14" />
+                        <span>Concurso Abierto de Méritos</span>
+                    </div>
+                    <h1 class="hero__title">Convocatorias <span class="hero__title-accent">2026</span></h1>
+                    <p class="hero__subtitle">Encuentra materiales de estudio, simulacros, cursos y convocatorias actualizadas para concursos públicos en Colombia.</p>
+                </div>
+            </section>
+
+            <!-- ===== SEARCH ===== -->
+            <section id="buscar" class="search-section">
+                <div class="search-container">
+                    <div class="search-header">
+                        <div class="search-header__icon">
+                            <Search :size="20" />
+                        </div>
+                        <div class="search-header__text">
+                            <h2 class="search-title">Buscar Convocatorias</h2>
+                            <p class="search-subtitle">Filtre por código, grado o nivel para encontrar la convocatoria de su interés</p>
+                        </div>
+                    </div>
+
+                    <div class="search-grid">
+                        <div class="search-field" :class="{ 'search-field--active': codigo !== '' }">
+                            <div class="search-field__icon">
+                                <Hash :size="16" />
+                            </div>
+                            <div class="search-field__content">
+                                <label class="search-field__label">Código convocatoria</label>
+                                <input
+                                    v-model="codigo"
+                                    type="text"
+                                    class="search-field__input"
+                                    placeholder="Ej: 108-2026"
+                                    @keyup.enter="search"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="search-field" :class="{ 'search-field--active': grado !== '' }">
+                            <div class="search-field__icon">
+                                <Briefcase :size="16" />
+                            </div>
+                            <div class="search-field__content">
+                                <label class="search-field__label">Código y Grado</label>
+                                <input
+                                    v-model="grado"
+                                    type="text"
+                                    class="search-field__input"
+                                    placeholder="Ej: 3PU-15"
+                                    @keyup.enter="search"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="search-field" :class="{ 'search-field--active': nivel !== '' }">
+                            <div class="search-field__icon">
+                                <BarChart3 :size="16" />
+                            </div>
+                            <div class="search-field__content">
+                                <label class="search-field__label">Nivel</label>
+                                <select v-model="nivel" class="search-field__select">
+                                    <option value="">Todos los niveles</option>
+                                    <option v-for="n in niveles" :key="n" :value="n">{{ n }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-actions">
+                        <button class="btn btn--ghost" @click="clearFilters">
+                            <RotateCcw :size="14" />
+                            <span>Limpiar</span>
+                        </button>
+                        <button class="btn btn--primary" @click="search">
+                            <Search :size="16" />
+                            <span>Buscar</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== RESULTS ===== -->
+            <div class="content-wrapper">
+            <section class="results">
+                <div class="results-header">
+                    <div class="results-header__left">
+                        <h2 class="results-title">Resultados</h2>
+                        <span class="results-count">{{ courses.total }} convocatorias encontradas</span>
+                    </div>
+                    <div class="results-header__right">
+                        <div class="pagination-controls">
+                            <span class="pagination-label">Mostrar</span>
+                            <select v-model="perPage" class="pagination-select">
+                                <option :value="25">25</option>
+                                <option :value="50">50</option>
+                                <option :value="100">100</option>
+                            </select>
+                            <span class="pagination-range">{{ courses.from }} - {{ courses.to }} de {{ courses.total }}</span>
+                        </div>
+                        <div class="pagination-nav">
+                            <button class="pagination-btn" :disabled="!courses.prev_page_url" @click="handlePage(courses.first_page_url)" title="Primera página">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                            </button>
+                            <button class="pagination-btn" :disabled="!courses.prev_page_url" @click="handlePage(courses.prev_page_url)" title="Anterior">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <button class="pagination-btn" :disabled="!courses.next_page_url" @click="handlePage(courses.next_page_url)" title="Siguiente">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                            <button class="pagination-btn" :disabled="!courses.next_page_url" @click="handlePage(courses.last_page_url)" title="Última página">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-if="courses.data.length === 0" class="empty-state">
+                    <div class="empty-state__icon">
+                        <Search :size="48" />
+                    </div>
+                    <h3 class="empty-state__title">Sin resultados</h3>
+                    <p class="empty-state__text">No se encontraron convocatorias con los filtros seleccionados.</p>
+                    <button class="btn btn--ghost" @click="clearFilters">Limpiar filtros</button>
+                </div>
+
+                <div v-for="course in courses.data" :key="course.id" class="course-card">
+                    <div class="course-card__header">
+                        <div class="course-card__icon">
+                            <Building2 :size="18" />
+                        </div>
+                        <div class="course-card__main">
+                            <div class="course-card__badges">
+                                <span class="badge badge--success">
+                                    <span class="badge__dot"></span>
+                                    Abierto
+                                </span>
+                                <span class="badge badge--outline">{{ course.category?.title || 'N/A' }}</span>
+                            </div>
+                            <h3 class="course-card__title">{{ course.title }}</h3>
+                            <div class="course-card__meta">
+                                <span class="course-card__meta-item">
+                                    <Hash :size="12" />
+                                    <strong>{{ course.code || 'N/A' }}</strong>
+                                </span>
+                                <span class="course-card__meta-separator">•</span>
+                                <span class="course-card__meta-item">
+                                    <Briefcase :size="12" />
+                                    <strong>{{ course.grado || 'N/A' }}</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="course-card__arrow">
+                            <ChevronRight :size="20" />
+                        </div>
+                    </div>
+
+                    <p class="course-card__description" v-if="course.description">{{ course.description }}</p>
+
+                    <div class="course-card__stats">
+                        <div class="course-card__stat">
+                            <div class="course-card__stat-icon course-card__stat-icon--blue">
+                                <Users :size="14" />
+                            </div>
+                            <div class="course-card__stat-content">
+                                <span class="course-card__stat-value">{{ course.subscriptions?.length || 0 }}</span>
+                                <span class="course-card__stat-label">inscritos</span>
+                            </div>
+                        </div>
+                        <div class="course-card__stat">
+                            <div class="course-card__stat-icon course-card__stat-icon--green">
+                                <DollarSign :size="14" />
+                            </div>
+                            <div class="course-card__stat-content">
+                                <span class="course-card__stat-value">{{ formatPrice(course.price) }}</span>
+                                <span class="course-card__stat-label">precio</span>
+                            </div>
+                        </div>
+                        <div class="course-card__stat">
+                            <div class="course-card__stat-icon course-card__stat-icon--purple">
+                                <BookOpen :size="14" />
+                            </div>
+                            <div class="course-card__stat-content">
+                                <span class="course-card__stat-value">{{ course.modules_count || 0 }}</span>
+                                <span class="course-card__stat-label">módulos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card__actions">
+                        <a :href="`/cursos/${course.slug}`" class="btn btn--primary btn--block">
+                            <BookOpen :size="16" />
+                            <span>Ver Material de Estudio</span>
+                        </a>
+                        <a :href="`/cursos/${course.slug}`" class="btn btn--outline btn--block">
+                            <Users :size="16" />
+                            <span>Inscribirse</span>
+                        </a>
+                    </div>
+
+                    <div class="course-card__notice">
+                        <div class="course-card__notice-icon">
+                            <BadgeCheck :size="14" />
+                        </div>
+                        <p class="course-card__notice-text">
+                            Este cargo hace parte de la <strong>planta global de la Procuraduría General de la Nación</strong> y puede ser reubicado a nivel nacional.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="results-header results-header--bottom">
+                    <div class="results-header__right">
+                        <div class="pagination-controls">
+                            <span class="pagination-label">Mostrar</span>
+                            <select v-model="perPage" class="pagination-select">
+                                <option :value="25">25</option>
+                                <option :value="50">50</option>
+                                <option :value="100">100</option>
+                            </select>
+                            <span class="pagination-range">{{ courses.from }} - {{ courses.to }} de {{ courses.total }}</span>
+                        </div>
+                        <div class="pagination-nav">
+                            <button class="pagination-btn" :disabled="!courses.prev_page_url" @click="handlePage(courses.first_page_url)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                            </button>
+                            <button class="pagination-btn" :disabled="!courses.prev_page_url" @click="handlePage(courses.prev_page_url)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <button class="pagination-btn" :disabled="!courses.next_page_url" @click="handlePage(courses.next_page_url)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                            <button class="pagination-btn" :disabled="!courses.next_page_url" @click="handlePage(courses.last_page_url)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+        </div>
+    </AppWebLayout>
+</template>
+

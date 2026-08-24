@@ -1,0 +1,1119 @@
+/*----------------------------- 
+    Edu Course Style 
+-------------------------------*/
+
+.rbt-card {
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+    padding: 30px;
+    border-radius: var(--radius);
+    background: var(--color-white);
+    position: relative;
+    height: 100%;
+    @media #{$lg-layout} {
+        padding: 20px;
+    }
+    @media #{$md-layout} {
+        padding: 20px;
+    }
+    @media #{$sm-layout} {
+        padding: 15px;
+    }
+    .rbt-card-img {
+        position: relative;
+        a {
+            display: block;
+            & img {
+                transition: 0.5s;
+                object-fit: cover;
+                border-radius: var(--radius);
+            }
+            @at-root {
+                .rbt-card:not(.rbt-card-post-box) .rbt-card-img a img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .rbt-card-body {
+        margin-top: 21px;
+        padding-top: 0;
+        @media #{$lg-layout} {
+            padding-top: 20px;
+        }
+        @media #{$md-layout} {
+            padding-top: 20px;
+        }
+        @media #{$sm-layout} {
+            padding-top: 20px;
+        }
+        .rbt-meta {
+            margin-bottom: 14px;
+            @media #{$sm-layout} {
+                margin-bottom: 8px;
+            }
+        }
+
+        .rbt-category {
+            margin-bottom: 15px;
+        }
+
+        .lesson-number {
+            margin-bottom: 15px;
+            @media #{$md-layout} {
+                margin-bottom: 8px;
+            }
+            @media #{$sm-layout} {
+                margin-bottom: 8px;
+            }
+        }
+
+        .rbt-card-title {
+            margin-bottom: 10px;
+            a {
+                color: var(--color-heading);
+                text-decoration: none;
+                @extend %transition;
+                &:hover {
+                    color: var(--color-primary);
+                }
+            }
+        }
+
+        .rbt-card-title {
+            font-size: 26px;
+            @media #{$lg-layout, $laptop-device, $md-layout} {
+                font-size: 22px;
+            }
+            @media #{$sm-layout} {
+                font-size: 20px;
+            }
+            @media #{$large-mobile} {
+                font-size: 18px;
+            }
+        }
+
+        .rbt-card-text {
+            color: var(--color-body);
+            margin-bottom: 20px;
+            @media #{$smlg-device} {
+                margin-bottom: 10px;
+            }
+            @media #{$sm-layout} {
+                margin-bottom: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .rbt-author-meta {
+            @media #{$smlg-device} {
+                margin-bottom: 10px !important;
+            }
+        }
+        .rbt-review {
+            margin-bottom: 12px;
+        }
+        .rbt-card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .rbt-btn-link {
+                font-size: 14px;
+            }
+        }
+    }
+    
+    .rbt-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+
+        @media #{$sm-layout} {
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+        .rbt-review {
+            margin-bottom: 0;
+        }
+    }
+
+    &.variation-02 {
+        position: relative;
+        padding: 0;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-1);
+        .rbt-card-body {
+            padding: 30px;
+            margin-top: 0;
+            @media #{$lg-layout} {
+                padding: 20px;
+            }
+            @media #{$md-layout} {
+                padding: 20px;
+            }
+            @media #{$sm-layout} {
+                padding: 20px;
+            }
+        }
+        .rbt-card-img {
+            a {
+                img {
+                    max-height: 350px;
+                    border-radius: 6px 6px 0 0;
+                }
+            }
+        }
+    }
+
+    &.height-auto {
+        .rbt-card-img {
+            a {
+                img {
+                    max-height: inherit !important;
+                }
+            }
+        }
+    }
+
+    &.card-minimal {
+        box-shadow: var(--shadow-9);
+        .rbt-card-body {
+            padding: 50px 40px; 
+            @media #{$lg-layout} {
+                padding: 40px 30px;
+            }
+            @media #{$md-layout} {
+                padding: 40px 30px;
+            }
+            @media #{$sm-layout} {
+                padding: 20px;
+            }
+        }
+    }
+
+    &.variation-03 {
+        height: 100%;
+        .rbt-card-img {
+            .thumbnail-link {
+                position: relative;
+                display: block;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    background: rgba(111,120,148,.54);
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transition: var(--transition-2);
+                    opacity: 0;
+                    border-radius: var(--radius);
+                }
+                .rbt-btn {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    margin-top: 50px;
+                    transition: 0.4s;
+                    opacity: 0;
+                    width: max-content;
+                }
+            }
+        }
+        .rbt-card-body {
+            display: flex;
+            padding-top: 0;
+            @media #{$sm-layout} {
+                padding-top: 15px;
+            }
+            .rbt-card-title {
+                flex-basis: 80%;
+                margin: 0;
+                text-transform: capitalize;
+                @media #{$laptop-device} {
+                    font-size: 22px !important;
+                }
+                @media #{$lg-layout, $md-layout, $sm-layout} {
+                    flex-basis: 90%;
+                    font-size: 20px !important;
+                }
+            }
+            .rbt-card-bottom {
+                flex-basis: 20%;
+                display: flex;
+                justify-content: flex-end;
+                @media #{$lg-layout} {
+                    flex-basis: 10%;
+                }
+                @media #{$md-layout} {
+                    flex-basis: 10%;
+                }
+                @media #{$sm-layout} {
+                    flex-basis: 10%;
+                }
+            }
+        }
+        .card-information {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            img {
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                border: 2px solid var(--color-border);
+                object-fit: cover;
+            }
+            .card-count {
+                padding-left: 10px;
+            }
+        }
+        &.program-image-large {
+            .card-information {
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+        &:hover {
+            .rbt-card-img {
+                .thumbnail-link {
+                    &::before {
+                        opacity: 1;
+                    }
+                    .rbt-btn {
+                        margin-top: 0;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &.style_2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 12px;
+            box-shadow: none;
+            position: relative;
+            padding: 50px 50px 40px 50px;
+
+            @media #{$lg-layout} {
+                padding: 20px;
+            }
+            @media #{$md-layout} {
+                padding: 20px;
+            }
+            @media #{$sm-layout} {
+                padding: 15px;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, #5163FF 0%, #FB64AD 100%);
+                transition: all 0.3s ease;
+                opacity: 0.2;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 2px;
+                left: 0;
+                background: linear-gradient(90deg, rgba(47, 87, 239, 0.05) 0%, rgba(197, 134, 238, 0.05) 100%);
+                width: 100%;
+                height: calc(100% - 2px);
+            }
+
+            .rbt-card-body {
+                display: block;
+                padding-top: 0;
+                margin-bottom: 28px;
+                position: relative;
+                z-index: 2;
+
+                .rbt-card-title {
+                    margin-bottom: 10px;
+                    font-size: 32px;
+                    font-weight: var(--f-medium);
+
+                    @media #{$md-layout} {
+                        font-size: 28px;
+                    }
+
+                    @media #{$sm-layout} {
+                        font-size: 24px;
+                    }
+
+                    @media #{$large-mobile} {
+                        font-size: 22px;
+                    }
+                }
+
+                .rbt-card-text {
+                    font-size: 17px;
+                    margin-bottom: 0;
+                    white-space: wrap;
+                }
+            }
+
+
+            .rbt-card-img {
+                .thumbnail-link {
+                    &::before {
+                        // background: rgba(216, 216, 216, 0.15);
+                        background: none;
+                    }
+                }
+            }
+
+            &:hover {
+                &::after {
+                    opacity: 1;
+                }
+            }
+
+            &.card-horizontal {
+                display: grid;
+                grid-template-columns: 0.6fr 1fr;
+                gap: 20px 100px;
+                padding: 50px 50px 0 74px;
+
+                @media #{$lg-layout, $md-layout, $sm-layout, $large-mobile} {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                @media #{$sm-layout} {
+                    padding: 40px 40px 0 40px;
+                }
+
+                @media #{$large-mobile} {
+                    padding: 20px 20px 0 20px;
+                }
+
+                .rbt-card-img-wrap {
+                    position: relative;
+
+                    .men-circle {
+                        position: absolute;
+                        left: -25px;
+                        top: -12px;
+                        z-index: 2;
+
+                        @media #{$large-mobile} {
+                            left: -15px;
+                            max-width: 75px;
+                        }
+                    }
+                    
+                    .shape-1 {
+                        position: absolute;
+                        top: 119px;
+                        left: 99px;
+                        z-index: 2;
+                        animation: edu_clip_show_left_to_right 1.5s linear infinite;
+
+                        @media #{$large-mobile} {
+                            top: 50px;
+                            left: 50px;
+                            max-width: 35px;
+                        }
+                    }
+
+                    .rbt-card-img {
+                        img {
+                            border-radius: 10px 10px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+    &.height-330 {
+        .rbt-card-img {
+            a {
+                img {
+                    max-height: 330px;
+                }
+            }
+        }
+    }
+
+    &.card-list {
+        display: flex;
+        max-height: 150px;
+        border-radius: 2px;
+        align-items: center;
+        height: 100%;
+        @media #{$sm-layout} {
+            display: block;
+            max-height: inherit;
+            align-items: center;
+            height: auto;
+            border-radius: var(--radius);
+        }
+
+        .rbt-card-img {
+            height: 100%;
+            a {
+                height: 100%;
+                img {
+                    border-radius: 2px 0 0 2px;
+                    max-height: initial;
+                    max-width: 290px;
+                    object-fit: cover;
+                    height: 150px;
+                    object-position: top center;
+                    @media #{$lg-layout} {
+                        max-width: 200px;
+                        min-width: 200px;
+                    }
+                    @media #{$sm-layout} {
+                        max-height: initial;
+                        max-width: inherit;
+                        min-width: inherit;
+                        width: 100%;
+                        object-fit: cover;
+                        border-radius: var(--radius) var(--radius) 0 0;
+                    }
+                }
+            }
+        }
+        .rbt-card-body {
+            padding: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            @media #{$large-mobile} {
+                padding: 20px;
+            }
+        }
+    }
+
+    &.card-list-2 {
+        display: flex;
+        border-radius: var(--radius);
+        align-items: center;
+        height: 100%;
+
+        @media #{$md-layout} {
+            display: block;
+        }
+
+        @media #{$sm-layout} {
+            display: block;
+        }
+
+        .rbt-card-img {
+            flex-basis: 40%;
+            height: 100%;
+            @media #{$md-layout} {
+                height: auto;
+            }
+            @media #{$sm-layout} {
+                height: auto;
+            }
+            a {
+                display: block;
+                height: 100%;
+                width: 100%;
+                img {
+                    border-radius: var(--radius);
+                    max-height: 100%;
+                    max-width: 100%;
+                    
+                }
+            }
+        }
+
+        .rbt-card-body {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-basis: 60%;
+            padding-left: 30px;
+            @media #{$lg-layout} {
+                padding-left: 20px;
+            }
+            @media #{$md-layout} {
+                padding-left: 0;
+                padding-top: 30px;
+            }
+            @media #{$sm-layout} {
+                padding-left: 0;
+                padding-top: 30px;
+            }
+            .rbt-card-title {
+                font-size: 26px;
+                @media #{$lg-layout} {
+                    font-size: 22px;
+                }
+                @media #{$md-layout} {
+                    font-size: 22px;
+                }
+                @media #{$sm-layout} {
+                    font-size: 22px;
+                }
+                @media #{$large-mobile} {
+                    font-size: 20px;
+                }
+            }
+            
+        }
+
+        &.elegant-course {
+            @media #{$lg-layout} {
+                display: block;
+            }
+            .rbt-card-img {
+                flex-basis: 55%;
+                display: block;
+                a {
+                    display: block;
+                    height: 100%;
+                    img {
+                        max-width: 100%;
+                        height: 100%;
+                        max-height: 100%;
+                        min-height: 100%;
+                        border-radius: 6px 0 0 6px;
+                    }
+                }
+            }
+            .rbt-card-body {
+                flex-basis: 45%;
+                position: relative;
+            }
+        }
+
+
+        &.event-list-card {
+            .rbt-card-img {
+                height: 100%;
+                @media #{$md-layout} {
+                    height: auto;
+                }
+                @media #{$sm-layout} {
+                    height: auto;
+                }
+                a {
+                    height: 100%;
+                    img {
+                        border-radius: 6px;
+                        width: 100%;
+                        height: 100%;
+                        @media #{$md-layout} {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                        @media #{$sm-layout} {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+            .rbt-card-body {
+                padding-left: 25px;
+                @media #{$md-layout} {
+                    padding-left: 0;
+                }
+                @media #{$sm-layout} {
+                    padding-left: 0;
+                    padding-top: 20px;
+                }
+                .rbt-card-title {
+                    font-size: 22px;
+                    margin-bottom: 20px;
+                    @media #{$sm-layout} {
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.elegant-course {
+        padding: 0;
+        border-radius: 10px;
+        align-items: inherit;
+        .rbt-meta {
+            margin: -3px;
+            margin-bottom: -6px;
+            li {
+                margin: 3px;
+                margin-bottom: 6px;
+            }
+        }
+        .rbt-meta-badge {
+            margin: -3px;
+            margin-bottom: -6px;
+            li {
+                margin: 3px;
+                margin-bottom: 6px;
+                .rbt-badge {
+                    transition: 0.3s;
+                    &:hover {
+                        background: var(--primary-opacity);
+                        color: var(--color-primary);
+                    }
+                }
+            }
+        }
+
+        .rbt-card-img {
+            a {
+                img {
+                    border-radius: var(--radius) var(--radius) 0 0;
+                }
+            }
+        }
+        .rbt-card-body {
+            padding: 30px;
+            .rbt-card-bottom {
+                .rbt-btn-link {
+                    margin-left: 20px;
+                }
+            }
+
+            
+        }
+
+        &.card-list-2 {
+            .rbt-card-body {
+                padding: 45px 30px 35px;
+                @media #{$sm-layout} {
+                    padding: 45px 20px 35px;
+                }
+            }
+        }
+    }
+    &.event-grid-card {
+        .rbt-meta {
+            margin: -3px;
+            margin-bottom: 10px;
+            li {
+                margin: 3px;
+            }
+        }
+        .rbt-card-body  {
+            padding-top: 15px;
+            .rbt-card-title {
+                margin-bottom: 22px;
+                @media #{$lg-layout} {
+                    font-size: 24px;
+                }
+            }
+        }
+        .rbt-badge {
+            span {
+                font-size: 12px;
+                color: var(--color-body);
+                display: block;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+            }
+        }
+    }
+
+}
+.rbt-bookmark-btn .tutor-course-wishlist-btn {
+    margin-right: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    border-radius: 100%;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    color: var(--color-heading);
+    padding: 0;
+    border: 0 none;
+    display: block;
+}
+
+.rbt-bookmark-btn .tutor-course-wishlist-btn:hover {
+    background: #f6f6f6;
+}
+
+.rbt-bookmark-btn .tutor-course-wishlist-btn i {
+    margin: 0;
+}
+.tutor-ratings-stars>* {
+    font-size: 16px;
+    color: #FF9747;
+    margin: 0 1px;
+}
+.rbt-sidebar-list-wrapper.rating-list-check .rbt-check-group .form-select {
+    display: none;
+}
+.rbt-sidebar-list-wrapper.rating-list-check .rbt-check-group input[type=radio] ~ label::after {
+    top: 6px;
+}
+.rbt-sidebar-list-wrapper.rating-list-check .rbt-check-group input[type=radio] ~ label::before {
+    top: 3px;
+}
+.rbt-course-top-wrapper .rbt-single-widget.rbt-widget-rating {
+    width: 92%;
+    border-radius: var(--radius);
+}
+.tutor-ratings-average {
+    color: rgb(107, 115, 133);
+}
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+div#rbt-course-search-wrapper-layout-1 > img {
+    max-width: 90px;
+    margin: 0 auto;
+    margin-top: 30px;
+    animation: rotateAnimation .5s linear infinite ;
+}
+div.rbt-search-dropdown span.rating-count {
+    margin-top: 0;
+}
+.rbt-search-dropdown .tutor-ratings-stars > * {
+    font-size: 9px;
+}
+.tutor-ratings-stars {
+    margin: 0;
+    display: flex;
+}
+.no-result-found {
+    text-align: center;
+}
+.rbt-dashboard-content h4.rbt-card-title {
+    font-size: 16px;
+}
+.tutor-dashboard-content-inner.my-wishlist .tutor-meta-course-by-cat.tutor-meta.tutor-mt-32 {
+    margin-top: 23px;
+}
+.tutor-dashboard-content-inner.my-wishlist .list-item-price {flex: 0 0 100%;justify-content: center;}
+
+.tutor-dashboard-content-inner.my-wishlist .tutor-d-flex.tutor-align-center.tutor-justify-between {
+    flex-wrap: wrap;
+    grid-gap: 9px 0;
+    justify-content: center;
+}
+
+.tutor-dashboard-content-inner.my-wishlist .tutor-d-flex.tutor-align-center.tutor-justify-between span.woocommerce-Price-amount.amount {
+    font-size: 16px;
+    font-weight: 500;
+    color: #6b7a8d;
+}
+
+.tutor-dashboard-content-inner.my-wishlist list-item-button {
+    flex: 0 0 100%;
+}
+
+.tutor-dashboard-content-inner.my-wishlist .tutor-d-flex.tutor-align-center.tutor-justify-between .list-item-button {
+    flex: 0 0 100%;
+}
+
+.tutor-dashboard-content-inner.my-wishlist .tutor-d-flex.tutor-align-center.tutor-justify-between .list-item-button a {
+    width: 100%;
+    justify-content: center;
+}
+.rbt-dashboard-content .tutor-ratings-stars span {
+    font-size: 13px;
+    color: #FF9747;
+    transition: 0.3s;
+}
+.rbt-review .rating span {
+    font-size: 13px;
+    color: #FF9747;
+    transition: 0.3s;
+}
+.rbt-btn.color-white-off.btn-white.btn-white {
+	color: #222 !important;
+}
+.rbt-card .rbt-card-body .rbt-card-bottom .course_details {
+	font-size: 14px;
+	font-weight: 500;
+}
+.rbt-card.variation-01.rbt-hover .rbt-card-body {
+	@media #{$lg-layout, $md-layout, $sm-layout} {
+        margin-top: 0;
+    }
+}
+.hanger-line > .col-lg-3:nth-child(3) {
+    @media #{$sm-layout} {
+        margin-top: 60px;
+    }
+}
+
+.rbt-schedule-author-box-single {
+    background: #fff;
+    display: flex;
+    width: max-content;
+    align-items: center;
+}
+
+.rbt-schedule-author-box-single h6.rbt-schedule-author-title {
+    margin-bottom: 0;
+}
+
+.rbt-schedule-author-content p.rbt-schedule-author-designation {
+    font-size: 14px;
+}
+
+.rbt-schedule-author-content {padding: 10px;}
+.rbt-schedule-author-box-single .rbt-schedule-author-img {
+    max-width: 60px;
+}
+.rbt-schedule-author-box-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+}
+.rbt-schedule-author-box-single .rbt-schedule-author-content {
+    padding: 10px;
+    padding-right: 20px;
+}
+.rbt-schedule-author-box-single .rbt-schedule-author-img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.rbt-schedule-author-box-single .rbt-schedule-author-img {
+    height: 100%;
+}
+.rbt-schedule-author-box-single {
+    border-radius: 10px;
+    overflow: hidden;
+}
+#event-map iframe {
+    width: 100%;
+    height: 300px;
+    margin-top: 10px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .rbt-card .rbt-card-body .rbt-card-bottom {
+        flex-wrap: wrap;
+        grid-gap: 10px;
+    }
+}
+.rating {
+    & a.disabled i {
+        color: #777;
+    }
+}
+@media (max-width: 991px) {
+    .rbt-service.rbt-service-2.variation-2.rbt-hover-02 .rbt-list-style-3 {
+        margin-bottom: 5px;
+    }
+}
+.rbt-card.card-list-2 .rbt-card-img a img {
+    object-position: center;
+}
+.rb-radius-10-img img {
+    border-radius: 10px;
+}
+.rbt-course-block .rbt-review .rating-count {color: var(--clr-primary-theme);margin-left: 6px;}
+@media (max-width: 767px) {
+    .rbt-author-area .media-body.ml--15 {
+        margin-left: 0 !important;
+    }
+}
+.rbt-admin-profile .admin-thumbnail img {
+    min-width: 100% !important;
+}
+ul.quick-access.rbt-quick-access-2 .rbt-user-menu-list-wrapper {
+    right: 0;
+    left: auto;
+}
+.rbt-card.elegant-course .rbt-card-body {
+	margin-top: 0;
+}
+.rb-white-btn-color.rb-has-arrow-btns .rbt-btn.btn-border {
+    color: #fff;
+}
+.breadcrumb-image-container.breadcrumb-style-max-width .meta-list li .author-thumbnail img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    object-position: top right;
+}
+
+.rbt-blog-grid-featured-img .rbt-card.height-auto .rbt-card-img a img {
+    max-height: 315px !important;
+}
+.has-rainbow-grid-featured-blog-enabled audio {
+    display: none;
+}
+.rbt-card.variation-02.rbt-hover.card-minimal .rbt-card-body img {
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.rbt-blog-area .histudy-post-wrapper > .row > *:nth-child(1) .mt--30, .rbt-blog-area .histudy-post-wrapper > .row > *:nth-child(2) .mt--30 {
+    margin-top: 0 !important;
+}
+.rbt-card .rbt-card-body .rbt-card-title.meta-gap {
+    margin-bottom: 35px;
+    margin-top: 30px;
+}
+
+.rbt-card .rbt-card-body .rbt-card-title.no-meta-img {
+    margin-top: 18px;
+}
+
+.rbt-has-large-program-thumbnail .rbt-card.variation-03 .card-information img {
+    width: 40px;
+    height: 40px;
+}
+.page-home .rbt-card .rbt-card-body .rbt-card-title { 
+    font-size: 26px!important;
+}
+
+.bt-banner-inner-layout-1 .rbt-card .rbt-card-body {
+    margin-top: 30px;
+}
+
+.card-style-four-custom .rbt-rbt-card-area .rbt-category a {
+	margin: 5px 5px!important;
+}
+
+/*
+ client card layout design
+*/
+
+.histudy-client-components-layout .rbt-card-img {
+    position: relative;
+}
+
+.histudy-client-components-layout .rbt-card-img img { 
+    border-radius: 25px 25px 0px 0px!important;
+}
+
+.histudy-client-components-layout .rbt-card-img .rbt-bookmark-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #11111178;
+    color: var(--e-global-color-21bfb04);
+    border-radius: 50%;
+}
+
+.histudy-client-components-layout .rbt-card-img .rbt-bookmark-btn a {
+    text-decoration: none!important;
+}
+
+.histudy-client-components-layout .rbt-card-img .rbt-bookmark-btn a { 
+    color: var(--color-white);
+}
+
+.histudy-client-components-layout .rbt-bookmark-btn .tutor-course-wishlist-btn:hover {
+    background-color: var(--color-secondary);
+}
+
+.histudy-client-components-layout .rbt-card.variation-01.rbt-hover.elegant-course .tutor-btn.tutor-btn-outline-primary {
+    height: unset!important;
+    line-height: unset!important;
+}
+
+.histudy-client-components-layout .rbt-card.elegant-course .rbt-meta-badge {
+    position: absolute;
+    z-index: 99;
+    bottom: 7px;
+    left: 30px;
+    margin: 0!important;
+    bottom: -20px;
+}
+
+.histudy-client-components-layout .rbt-card.elegant-course .rbt-meta-badge .rbt-badge { 
+    background: var(--color-primary);
+    border-radius:25px;
+    color: var(--color-white);
+}
+
+.histudy-client-components-layout .rbt-card.elegant-course .rbt-meta-badge .rbt-badge:hover { 
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+.histudy-client-components-layout .histudy-course-student {
+    font-size: 16px;
+}
+
+.histudy-client-components-layout .histudy-course-student i {
+    margin-right: 8px;
+}
+
+.histudy-client-components-layout .rbt-author-meta .rbt-avater img {
+    border: none!important;
+}
+
+.histudy-client-components-layout .rbt-author-meta .rbt-author-info a {
+    text-decoration: none;
+}
+
+.histudy-client-components-layout .rbt-card.elegant-course .rbt-meta-badge {
+    margin: 0;
+    margin-bottom: 0;
+}
+
+.histudy-client-components-layout .rbt-author-meta {
+    margin-top: 15px;
+}
+
+.histudy-client-components-layout .rbt-card.elegant-course .rbt-card-body .rbt-card-bottom .rbt-btn-link {
+    text-decoration: none;
+}
+
+.histudy-client-components-layout .rbt-card.variation-01.rbt-hover.elegant-course .tutor-btn.tutor-btn-outline-primary {
+    text-decoration: none;
+}
+
+.rbt-schedule-author-box-single {
+    flex: 0 0 49%;
+}
+
+.rbt-event-area .event-activation-1 {
+    margin: -30px;
+    padding: 30px;
+    .rbt-card{
+        box-shadow: unset;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .page-home .rbt-card .rbt-card-body .rbt-card-title {
+        font-size: 22px!important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .rbt-blog-area .histudy-post-wrapper > .row > *:nth-child(1) .mt--30, 
+    .rbt-blog-area .histudy-post-wrapper > .row > *:nth-child(2) .mt--30 {
+        margin-top: 30px !important;
+    }
+
+    .rbt-card.card-minimal .rbt-card-body {
+        padding: 30px;
+    }
+
+    .rbt-card .rbt-card-body .rbt-card-title.meta-gap {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+}

@@ -1,0 +1,76 @@
+/**
+* Keyframe for placeholder
+*/
+@keyframes animatedPlaceholder {
+    0% {
+        background-color: #e5e5e5;
+    }
+    50% {
+        background-color: #bebcbc;
+    }
+    100% {
+        background-color: #e5e5e5;
+    }
+}
+.animated-placeholder {
+    animation-name: animatedPlaceholder;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+}
+.rb-tutor-course-card-placeholder .rb-tutor-course-thumbnail {
+    height: 216px;
+    width: 100%;
+    background: #c9c9c9;
+}
+.rb-tutor-course-card-placeholder .rb-tutor-course-rating {
+    height: 30px;
+    background: #c9c9c9;
+    width: 60%;
+    margin-top: 24px;
+}
+.rb-tutor-course-card-placeholder .rb-tutor-course-title {
+    height: 40px;
+    margin-top: 15px;
+    width: 90%;
+}
+
+.rb-tutor-course-card-placeholder .rb-tutor-course-meta.animated-placeholder {
+    height: 23px;
+    width: 180px;
+    margin-top: 17px;
+}
+
+.rb-tutor-course-card-placeholder {
+    background: #c5c5c559;
+    padding: 30px;
+    border-radius: 10px;
+    & .rb-tutor-course-excerpt {
+        height: 32px;
+        margin-top: 15px;
+    }
+    & .rb-tutor-course-author-meta {
+        height: 20px;
+        margin-top: 14px;
+        width: 60%;
+    }
+    & .rb-tutor-course-bottom {
+        height: 22px;
+        margin-top: 15px;
+        width: 85%;
+    }
+}
+.rbt-search-style input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: none;
+}
+
+.tutor-course-details-content li {
+    font-size: 18px;
+    line-height: 1.45;
+    margin-bottom: 30px;
+    color: #41454F;
+}
+.rbt-course-feature-box.rbt-shadow-box img {
+    width: 100%;
+}

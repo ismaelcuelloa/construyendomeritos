@@ -1,0 +1,252 @@
+/* Admin Panel Global Styles */
+
+/* Color Variables */
+:root {
+    --color-primary: #133a54;
+    --color-primary-light: #1a5a80;
+    --color-primary-dark: #0d2a3e;
+    --color-accent: #f5e42c;
+    --color-dark: #1a1a1a;
+    --color-light: #f9f9f9;
+    --color-border: #f0f0f0;
+}
+
+/* Dashboard Area */
+.rbt-dashboard-area {
+    background: #ffffff;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #133a54 0%, #1a5a80 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #0d2a3e 0%, #133a54 100%);
+}
+
+/* Global Button Styling Override */
+button,
+a.btn,
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Form Elements */
+input,
+textarea,
+select {
+    border-color: rgba(19, 58, 84, 0.1) !important;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #133a54 !important;
+    box-shadow: 0 0 0 3px rgba(19, 58, 84, 0.1) !important;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+}
+
+table th {
+    background: linear-gradient(135deg, rgba(19, 58, 84, 0.05) 0%, rgba(26, 90, 128, 0.02) 100%);
+    color: #133a54;
+    border-bottom: 2px solid rgba(19, 58, 84, 0.2);
+}
+
+table td {
+    border-bottom: 1px solid rgba(19, 58, 84, 0.05);
+}
+
+table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(19, 58, 84, 0.05) 0%, rgba(26, 90, 128, 0.02) 100%);
+}
+
+/* Badge Styling */
+.badge,
+.rbt-badge {
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-primary,
+.badge-orange {
+    background: linear-gradient(135deg, rgba(19, 58, 84, 0.15) 0%, rgba(26, 90, 128, 0.1) 100%);
+    color: #133a54;
+    border: 1px solid rgba(19, 58, 84, 0.2);
+}
+
+.badge-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(52, 211, 153, 0.1) 100%);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(248, 113, 113, 0.1) 100%);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 191, 36, 0.1) 100%);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badge-info {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(96, 165, 250, 0.1) 100%);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Modal/Dialog Styling */
+.modal-content {
+    border: 1.5px solid rgba(19, 58, 84, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, rgba(19, 58, 84, 0.05) 0%, rgba(26, 90, 128, 0.02) 100%);
+    border-bottom: 1.5px solid rgba(19, 58, 84, 0.1);
+}
+
+.modal-header .btn-close {
+    filter: invert(0) !important;
+    opacity: 0.5;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+/* Alert Styling */
+.alert {
+    border-radius: 8px;
+    border-width: 1.5px;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.05) 100%);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(248, 113, 113, 0.05) 100%);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%);
+    border-color: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
+    border-color: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+/* Card Styling */
+.card {
+    border: 1.5px solid rgba(19, 58, 84, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card:hover {
+    border-color: rgba(19, 58, 84, 0.2);
+    box-shadow: 0 8px 24px rgba(19, 58, 84, 0.1);
+}
+
+/* Utility Classes */
+.text-primary {
+    color: #133a54 !important;
+}
+
+.text-accent {
+    color: #f5e42c !important;
+}
+
+.bg-primary-light {
+    background: linear-gradient(135deg, rgba(19, 58, 84, 0.1) 0%, rgba(26, 90, 128, 0.05) 100%);
+}
+
+.border-primary {
+    border-color: rgba(19, 58, 84, 0.2) !important;
+}
+
+/* Spacing utility updates */
+.mb--40 {
+    margin-bottom: 40px;
+}
+
+.mt--40 {
+    margin-top: 40px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 16px;
+    }
+
+    .rbt-dashboard-area {
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+/* Animation */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-slideInUp {
+    animation: slideInUp 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease;
+}

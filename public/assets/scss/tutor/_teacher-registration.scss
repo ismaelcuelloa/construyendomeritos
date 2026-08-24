@@ -1,0 +1,180 @@
+.rbt-contact-form.contact-form-style-1 ul.tutor-required-fields {
+    list-style: none;
+    margin-bottom: 0;
+}
+#tutor-registration-form {
+    padding: 0;
+}
+.tutor-user-public-profile .tutor-user-profile-content {
+    width: 100%;
+    float: none;
+    margin-top: 210px;
+}
+
+/**
+Teacher archive
+*/
+.tutor-instructor-list-item.tutor-instructor-layout-minimal-horizontal .tutor-row.tutor-align-center {
+    flex-direction: column;
+    text-align: center;
+}
+.tutor-instructor-list-item.tutor-instructor-layout-minimal-horizontal {
+    padding: 20px;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+    border: 0;
+}
+
+.tutor-instructor-list .tutor-instructor-list-item .tutor-avatar {
+    width: 100%;
+    height: 353px;
+    border-radius: 6px;
+}
+.tutor-instructor-list .tutor-instructor-list-item {
+    transition: all .3s;
+}
+.tutor-instructor-list .tutor-instructor-list-item  h4.tutor-instructor-title {
+    line-height: 1.4;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-top: 13px;
+}
+
+.tutor-instructor-list-item .tutor-instructor-courses {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 12px;
+    letter-spacing: 0.6px;
+    font-style: italic;
+}
+.tutor-instructor-list .tutor-instructor-list-item:hover {
+    transform: scale(1.02);
+}
+aside[tutor-instructors-filters] {
+    box-shadow: var(--shadow-1);
+    padding: 30px;
+    border-radius: var(--radius);
+    background: var(--color-white);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    color: var(--color-heading);
+}
+
+aside[tutor-instructors-filters] .tutor-widget-title {
+    font-size: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: 15px;
+}
+
+aside[tutor-instructors-filters] .tutor-widget-content label {
+    position: relative;
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: rgb(107, 115, 133);
+}
+
+aside[tutor-instructors-filters] .tutor-widget-content input {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+}
+
+aside[tutor-instructors-filters] .tutor-widget-content .tutor-list-item {
+    margin-bottom: 5px;
+}
+.tutor-instructor-list-item.tutor-instructor-layout-minimal-horizontal > .tutor-row > .tutor-col-auto {
+    width: 100%;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .tutor-instructor-list .tutor-instructor-list-item .tutor-avatar {
+        width: 100%;
+        height: 203px;
+    }
+    .tutor-wrap.tutor-wrap-parent.tutor-instructors > .tutor-row {
+        grid-gap: 0 15px;
+    }
+    
+    .tutor-wrap-parent .tutor-col-lg-9 {
+        width: calc(75% - 15px);
+    }
+}
+.tutor-widget.tutor-widget-course-categories .tutor-btn-ghost {
+    margin-top: 0;
+}
+.tutor-widget.tutor-widget-course-categories.tutor-mt-48 {
+    margin-top: 39px;
+}
+.tutor-user-public-profile .photo-area .pp-area .profile-rating-media .tutor-rating-container .rating-total-meta {
+    color: #fff;
+    transform: translateY(5px);
+}
+
+.profile-rating-media.content-for-desktop .tutor-rating-container .rating-digits, .profile-rating-media.content-for-desktop .tutor-rating-container .rating-total {
+    display: inline-block;
+}
+.tutor-user-public-profile .photo-area .pp-area .profile-rating-media .tutor-rating-container .rating-digits {
+    transform: translateY(4px);
+    margin-left: 10px;
+}
+ul.nav.nav-tabs.tab-button-style-2.tabs.wc-tabs li.active a, ul.nav.nav-tabs.tab-button-style-2.tabs.wc-tabs li a:hover {
+    color: var(--color-primary);
+}
+ul.nav.nav-tabs.tab-button-style-2.tabs.wc-tabs li.active a::after, ul.nav.nav-tabs.tab-button-style-2.tabs.wc-tabs li a:hover::after {
+    transform: scaleX(1);
+}
+.rbt-single-product .product-action table.variations .label > label {
+    color: var(--color-heading);
+    line-height: 1;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.woocommerce div.product div.images .woocommerce-product-gallery__image:not(:first-child) {
+    margin: 0 13px;
+    margin-top: 20px;
+}
+.rbt-single-product-area div.product form.cart .button.single_add_to_cart_button {
+    height: 60px;
+}
+.woocommerce div.product div.images .woocommerce-product-gallery__image:nth-child(2) {
+    margin-left: 0;
+}
+.woocommerce div.product form.cart .variations .dropdown.bootstrap-select > button {
+    display: none !important;
+}
+.woocommerce div.product form.cart .variations .dropdown.bootstrap-select > select {
+    opacity: 1 !important;
+    position: static !important;
+    background: #eaeff3;
+    padding: 9px 10px !important;
+}
+.single_variation_wrap .woocommerce-variation-price {
+    margin-bottom: 20px;
+}
+.rbt-single-product-area.rbt-single-product .woocommerce-notices-wrapper {
+    margin-top: 30px;
+}
+.single-product.woocommerce-page .rbt-breadcrumb-default.bg-gradient-1 {
+    margin-bottom: 120px;
+}
+@media (min-width: 1200px) {
+    .tutor-wrap.tutor-wrap-parent.tutor-instructors > .tutor-row {grid-gap: 30px;}
+    .tutor-wrap.tutor-wrap-parent.tutor-instructors > .tutor-row main.tutor-col-lg-9.tutor-col-xl-9 {
+        flex: calc(75% - 30px);
+    }
+}
+
+.rbt-card-top .tutor-course-ratings.tutor-mb-8 {
+    margin-bottom: 0;
+}
+
+.tutor-btn-ghost-custom {
+    font-size: 14px;
+}
