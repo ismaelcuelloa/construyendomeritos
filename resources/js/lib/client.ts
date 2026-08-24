@@ -13,6 +13,7 @@ Client.ADMIN_SUBCATEGORIES = '/admin/categorias'; // subcategory routes use /adm
 Client.ADMIN_COURSES = '/admin/cursos';
 Client.ADMIN_MODULES = '/admin/cursos/modulos';
 Client.ADMIN_MODULES_FILES = '/admin/cursos/modulos/archivos';
+Client.ADMIN_EXAMS = '/admin/cursos/modulos';
 Client.ADMIN_SUBSCRIPCIONS = '/admin/suscripciones';
 Client.ADMIN_ORDERS = '/admin/ordenes';
 
