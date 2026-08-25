@@ -182,10 +182,12 @@ onMounted(() => {
                                         <hr class="mt--10 mb--10" />
                                         <ul class="user-list-wrapper">
                                             <li>
-                                                <Link href="/logout" method="post" as="button" class="logout-btn">
-                                                    <i class="feather-log-out"></i>
-                                                    <span>Cerrar Sesión</span>
-                                                </Link>
+                                                <form :action="isSimulacros ? mainUrl('/logout') : '/logout'" method="post" class="logout-btn">
+                                                    <button type="submit" class="logout-btn">
+                                                        <i class="feather-log-out"></i>
+                                                        <span>Cerrar Sesión</span>
+                                                    </button>
+                                                </form>
                                             </li>
                                         </ul>
                                     </div>
@@ -228,10 +230,12 @@ onMounted(() => {
                                         <hr class="mt--10 mb--10" />
                                         <ul class="user-list-wrapper">
                                             <li>
-                                                <Link href="/logout" method="post" as="button" class="logout-btn">
-                                                    <i class="feather-log-out"></i>
-                                                    <span>Cerrar Sesión</span>
-                                                </Link>
+                                                <form :action="isSimulacros ? mainUrl('/logout') : '/logout'" method="post" class="logout-btn">
+                                                    <button type="submit" class="logout-btn">
+                                                        <i class="feather-log-out"></i>
+                                                        <span>Cerrar Sesión</span>
+                                                    </button>
+                                                </form>
                                             </li>
                                         </ul>
                                     </div>
@@ -470,10 +474,12 @@ onMounted(() => {
                         <Link v-else @click="closeMobileMenu" href="/register">Registrarse</Link>
                     </li>
                     <li v-if="auth.user">
-                        <Link @click="closeMobileMenu" href="/logout" method="post" as="button" class="logout-mobile-btn">
-                            <i class="feather-log-out"></i>
-                            <span>Cerrar Sesión</span>
-                        </Link>
+                        <form :action="isSimulacros ? mainUrl('/logout') : '/logout'" method="post" class="logout-mobile-btn">
+                            <button type="submit" class="logout-mobile-btn">
+                                <i class="feather-log-out"></i>
+                                <span>Cerrar Sesión</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -602,6 +608,7 @@ onMounted(() => {
     background: none;
     border: none;
     padding: 0;
+    margin: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -611,6 +618,30 @@ onMounted(() => {
 }
 
 :deep(.logout-btn:hover) {
+    color: #dc2626;
+}
+
+form.logout-btn {
+    width: 100%;
+    margin: 0;
+}
+
+form.logout-btn button.logout-btn {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+form.logout-btn button.logout-btn:hover {
     color: #dc2626;
 }
 
@@ -810,8 +841,33 @@ onMounted(() => {
     cursor: pointer;
 }
 
+form.logout-mobile-btn {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
+form.logout-mobile-btn button.logout-mobile-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 10px;
+    color: #151515;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
 .popup-mobile-menu .mainmenu li a:hover,
-.logout-mobile-btn:hover {
+.logout-mobile-btn:hover,
+form.logout-mobile-btn button.logout-mobile-btn:hover {
     color: #f5e42c !important;
     padding-left: 20px;
 }
