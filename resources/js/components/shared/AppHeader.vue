@@ -18,6 +18,17 @@ const page = usePage();
 const auth = computed(() => page.props.auth);
 const mobileMenuOpen = ref(false);
 
+const isSimulacros = computed(() => {
+    if (typeof window !== 'undefined') {
+        return window.location.hostname === (page.props as any).simulacrosDomain;
+    }
+    return false;
+});
+const mainHomeUrl = computed(() => {
+    const mainDomain = (page.props as any).mainDomain;
+    return mainDomain ? `https://${mainDomain}/` : '/';
+});
+
 const toggleMobileMenu = () => {
     mobileMenuOpen.value = !mobileMenuOpen.value;
     if (mobileMenuOpen.value) {
@@ -58,13 +69,13 @@ onMounted(() => {
                     <div class="header-left rbt-header-content">
                         <div class="header-info">
                             <div class="logo logo-dark">
-                                <Link :href="'/'" class="logo-link">
+                                <Link :href="isSimulacros ? mainHomeUrl : '/'" class="logo-link">
                                     <img src="/assets/images/logo/logo-color.png" alt="Education Logo Images" />
                                 </Link>
                             </div>
 
                             <div class="logo d-none logo-light">
-                                <Link :href="'/'">
+                                <Link :href="isSimulacros ? mainHomeUrl : '/'">
                                     <img src="/assets/images/logo/logo-color.png" alt="Education Logo Images" />
                                 </Link>
                             </div>
@@ -75,7 +86,7 @@ onMounted(() => {
                         <nav class="mainmenu-nav">
                             <ul class="mainmenu">
                                 <li class="with-megamenu has-menu-child-item position-static menu-item-open">
-                                    <Link href="/">Inicio</Link>
+                                    <Link :href="isSimulacros ? mainHomeUrl : '/'">Inicio</Link>
                                     <!-- Start Mega Menu  -->
 
                                     <!-- End Mega Menu  -->
@@ -403,7 +414,7 @@ onMounted(() => {
             <div class="inner-top">
                 <div class="content">
                     <div class="logo">
-                        <Link @click="closeMobileMenu" href="/">
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainHomeUrl : '/'">
                             <img src="/assets/images/logo/logo-color.png" alt="Education Logo" />
                         </Link>
                     </div>
@@ -432,7 +443,7 @@ onMounted(() => {
             <nav class="mainmenu-nav">
                 <ul class="mainmenu">
                     <li>
-                        <Link @click="closeMobileMenu" href="/">Inicio</Link>
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainHomeUrl : '/'">Inicio</Link>
                     </li>
                     <li>
                         <Link @click="closeMobileMenu" href="/cursos">Materiales de Estudio</Link>

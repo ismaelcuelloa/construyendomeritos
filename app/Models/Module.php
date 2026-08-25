@@ -23,4 +23,9 @@ class Module extends Model
     {
         return $this->hasMany(ModuleFile::class);
     }
+
+    public function exam()
+    {
+        return $this->hasOne(Exam::class);
+    }
 }
