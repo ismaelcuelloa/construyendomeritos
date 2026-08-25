@@ -42,13 +42,13 @@ onMounted(() => {
                             Material de estudio especializado para la Procuraduría General de la Nación 2026. Simulacros, guías y recursos actualizados para alcanzar tu cargo ideal.
                         </p>
                         <div class="footer-social">
-                            <a href="https://www.facebook.com/guiasysimulacros" target="_blank" title="Facebook" class="social-link">
+                            <a href="https://www.facebook.com/" target="_blank" title="Facebook" class="social-link">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="https://www.instagram.com/guiasysimulacros/" target="_blank" title="Instagram" class="social-link">
+                            <a href="https://www.instagram.com/" target="_blank" title="Instagram" class="social-link">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://wa.me/573122372052" target="_blank" title="WhatsApp" class="social-link">
+                            <a href="https://wa.me/573236871881" target="_blank" title="WhatsApp" class="social-link">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
                         </div>
@@ -82,18 +82,18 @@ onMounted(() => {
                                 <i class="fab fa-whatsapp"></i>
                                 <div>
                                     <span class="contact-label">Atención:</span>
-                                    <a href="https://wa.me/57" target="_blank">+57</a>
+                                    <a href="https://wa.me/57" target="_blank">+57 3236871881</a>
                                 </div>
                             </li>
                             <li>
                                 <i class="fab fa-whatsapp"></i>
                                 <div>
                                     <span class="contact-label">Soporte:</span>
-                                    <a href="https://wa.me/57" target="_blank">+57</a>
+                                    <a href="https://wa.me/57" target="_blank">+57 3236871881</a>
                                 </div>
                             </li>
                         </ul>
-                        <a class="footer-btn" href="https://wa.me/57" target="_blank">
+                        <a class="footer-btn" href="https://wa.me/573236871881" target="_blank">
                             Contáctanos
                             <i class="fas fa-arrow-right"></i>
                         </a>

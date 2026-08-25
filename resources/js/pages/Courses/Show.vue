@@ -292,7 +292,7 @@ const handleAddToCart = () => {
                                                 rel="noopener noreferrer"
                                             >
                                                 <i class="feather-phone"></i>
-                                                +57 305 4208045
+                                                +57 323 6871881
                                             </a>
                                         </div>
                                     </div>

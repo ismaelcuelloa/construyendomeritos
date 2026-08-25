@@ -20,7 +20,7 @@ const page = usePage();
                         <div class="legal-header">
                             <h1>Política de Privacidad y Tratamiento de Datos Personales</h1>
                             <h2 class="subtitle">CONSTRUYENDO MÉRITOS CON EXCELENCIA</h2>
-                            <p class="last-update">Última actualización: 20 de diciembre de 2025</p>
+                            <p class="last-update">Última actualización: 24 de Agosto de 2026</p>
                         </div>
 
                         <div class="legal-content">
