@@ -44,7 +44,7 @@ onMounted(() => {
                         </a>
                         <p class="footer-desc">
                             Construyendo Méritos con Excelencia<br />
-                            <strong>Material de preparación independiente — Guía de estudio no oficial</strong> para la Procuraduría General de la Nación 2026. Simulacros, guías y recursos actualizados para alcanzar tu cargo ideal.
+                            <strong>Material de preparación independiente</strong> para la Procuraduría General de la Nación 2026. Simulacros, guías y recursos actualizados para alcanzar tu cargo ideal.
                         </p>
                         <div class="footer-social">
                             <a href="https://www.facebook.com/" target="_blank" title="Facebook" class="social-link">
