@@ -622,7 +622,7 @@ onMounted(async () => {
     flex-shrink: 0;
     padding: 1.5rem;
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-bottom: 2px solid #ff6b35;
+    border-bottom: 2px solid #f5e42c;
     z-index: 10;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -660,7 +660,7 @@ Link.sidebar-logo img {
 }
 
 .sidebar-close-btn {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     color: white;
     border: none;
     width: 36px;
@@ -671,12 +671,12 @@ Link.sidebar-logo img {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 2px 8px rgba(19, 58, 84, 0.3);
 }
 
 .sidebar-close-btn:hover {
     transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.5);
+    box-shadow: 0 4px 12px rgba(19, 58, 84, 0.5);
 }
 
 .sidebar-close-btn i {
@@ -709,17 +709,17 @@ Link.sidebar-logo img {
 }
 
 .sticky-sidebar .scrollable-content::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     border-radius: 10px;
 }
 
 .sticky-sidebar .scrollable-content::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+    background: linear-gradient(135deg, #f5e42c 0%, #133a54 100%);
 }
 
 .active-dark-mode .sticky-sidebar .sticky-header {
     background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    border-bottom-color: #ff6b35;
+    border-bottom-color: #f5e42c;
 }
 
 .active-dark-mode .sidebar-title {
@@ -734,7 +734,7 @@ Link.sidebar-logo img {
    HEADER MODERNO
    =========================== */
 .modern-header {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     padding: 1.25rem 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -861,7 +861,7 @@ Link.sidebar-logo img {
 .material-nav-btn {
     flex: 1;
     min-width: 200px;
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     color: white !important;
     border: none;
     padding: 1rem 1.5rem;
@@ -874,13 +874,13 @@ Link.sidebar-logo img {
     transition: all 0.3s ease;
     font-weight: 600;
     font-size: 1rem;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 4px 12px rgba(19, 58, 84, 0.3);
 }
 
 .material-nav-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+    box-shadow: 0 6px 20px rgba(19, 58, 84, 0.4);
+    background: linear-gradient(135deg, #f5e42c 0%, #133a54 100%);
 }
 
 .material-nav-btn:disabled {
@@ -919,7 +919,7 @@ Link.sidebar-logo img {
 
 .about-header i {
     font-size: 1.5rem;
-    color: #ff6b35;
+    color: #133a54;
 }
 
 .about-header h4 {
@@ -986,13 +986,13 @@ Link.sidebar-logo img {
 }
 
 .modern-pdf-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .modern-pdf-container::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #f7931e 0%, #ff6b35 100%);
+    background: linear-gradient(135deg, #f5e42c 0%, #133a54 100%);
 }
 
 /* ===========================
@@ -1038,7 +1038,7 @@ Link.sidebar-logo img {
     min-width: auto !important;
     padding: 0.75rem 1.25rem !important;
     border-radius: 10px !important;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(19, 58, 84, 0.3) !important;
     white-space: nowrap;
 }
 
@@ -1071,7 +1071,7 @@ Link.sidebar-logo img {
 }
 
 .page-current {
-    color: #ff6b35;
+    color: #133a54;
     font-size: 1.25rem;
     font-weight: 800;
 }
@@ -1123,7 +1123,7 @@ Link.sidebar-logo img {
 .loading-animation .circle {
     width: 16px;
     height: 16px;
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     border-radius: 50%;
     animation: bounce 1.4s infinite ease-in-out both;
 }
@@ -1148,7 +1148,7 @@ Link.sidebar-logo img {
 }
 
 .loading-text {
-    color: #ff6b35;
+    color: #133a54;
     font-weight: 600;
     font-size: 1.1rem;
 }
@@ -1198,7 +1198,7 @@ Link.sidebar-logo img {
 }
 
 .modern-nav-btn {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     border: none;
     padding: 0.6rem;
     cursor: pointer;
@@ -1214,7 +1214,7 @@ Link.sidebar-logo img {
 
 .modern-nav-btn:hover:not(:disabled) {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 4px 15px rgba(19, 58, 84, 0.4);
 }
 
 .modern-nav-btn:disabled {
@@ -1241,7 +1241,7 @@ Link.sidebar-logo img {
 }
 
 .page-current {
-    color: #ff6b35;
+    color: #133a54;
     font-size: 1.1rem;
 }
 
@@ -1257,7 +1257,7 @@ Link.sidebar-logo img {
 .zoom-info {
     font-weight: 600;
     font-size: 0.875rem;
-    color: #ff6b35;
+    color: #133a54;
     padding: 0 0.5rem;
     min-width: 50px;
     text-align: center;
@@ -1289,7 +1289,7 @@ Link.sidebar-logo img {
 }
 
 .modern-nav-btn {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     border: none;
     padding: 0.6rem;
     cursor: pointer;
@@ -1305,7 +1305,7 @@ Link.sidebar-logo img {
 
 .modern-nav-btn:hover:not(:disabled) {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 4px 15px rgba(19, 58, 84, 0.4);
 }
 
 .modern-nav-btn:disabled {
@@ -1332,7 +1332,7 @@ Link.sidebar-logo img {
 }
 
 .page-current {
-    color: #ff6b35;
+    color: #133a54;
     font-size: 1.1rem;
 }
 
@@ -1348,7 +1348,7 @@ Link.sidebar-logo img {
 .zoom-info {
     font-weight: 600;
     font-size: 0.875rem;
-    color: #ff6b35;
+    color: #133a54;
     padding: 0 0.5rem;
     min-width: 50px;
     text-align: center;
