@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Module } from '@/types/project';
 import { router } from '@inertiajs/vue3';
+import { Client } from '@/lib/client';
 
 interface Props {
     isSubscribed: boolean;
@@ -73,6 +74,7 @@ const isCurrentFile = (fileId: number | string) => {
                     >
                         {{ module.title }}
                         <span class="rbt-badge-5 ml--10"> {{ getTotalFiles(module) }} archivos </span>
+                        <span v-if="module.exam && module.exam.active" class="rbt-badge-5 ml--10 exam-header-badge"> 1 simulacro </span>
                     </button>
                 </h2>
                 <div
@@ -122,6 +124,31 @@ const isCurrentFile = (fileId: number | string) => {
                                     <i class="feather-folder"></i>
                                     No hay material disponible para este módulo
                                 </div>
+                            </li>
+
+                            <!-- Link al Simulacro -->
+                            <li v-if="module.exam && module.exam.active">
+                                <a
+                                    v-if="isSubscribed"
+                                    :href="`${Client.simulacrosUrl()}/examen/${module.exam.id}`"
+                                    class="pdf-viewer-link"
+                                >
+                                    <div class="course-content-left">
+                                        <i class="feather-target"></i>
+                                        <span class="text">{{ module.exam.title }}</span>
+                                        <span class="badge badge-primary ms-2">Simulacro en línea</span>
+                                    </div>
+                                </a>
+                                <a v-else @click.prevent class="disabled-link">
+                                    <div class="course-content-left">
+                                        <i class="feather-target"></i>
+                                        <span class="text">{{ module.exam.title }}</span>
+                                        <span class="badge badge-primary ms-2">Simulacro en línea</span>
+                                    </div>
+                                    <div class="course-content-right">
+                                        <span class="course-lock"><i class="feather-lock"></i></span>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -223,5 +250,10 @@ const isCurrentFile = (fileId: number | string) => {
 
 .active-file .pdf-viewer-link.current-file .feather-file-text {
     color: #133a54;
+}
+
+.exam-header-badge {
+    background: rgba(19, 58, 84, 0.1) !important;
+    color: #133a54 !important;
 }
 </style>

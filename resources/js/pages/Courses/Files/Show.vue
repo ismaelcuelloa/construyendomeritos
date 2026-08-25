@@ -622,7 +622,7 @@ onMounted(async () => {
     flex-shrink: 0;
     padding: 1.5rem;
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-bottom: 2px solid #f5e42c;
+    border-bottom: 2px solid #133a54;
     z-index: 10;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -660,7 +660,7 @@ Link.sidebar-logo img {
 }
 
 .sidebar-close-btn {
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     color: white;
     border: none;
     width: 36px;
@@ -709,17 +709,17 @@ Link.sidebar-logo img {
 }
 
 .sticky-sidebar .scrollable-content::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     border-radius: 10px;
 }
 
 .sticky-sidebar .scrollable-content::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #f5e42c 0%, #133a54 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
 }
 
 .active-dark-mode .sticky-sidebar .sticky-header {
     background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    border-bottom-color: #f5e42c;
+    border-bottom-color: #133a54;
 }
 
 .active-dark-mode .sidebar-title {
@@ -734,7 +734,7 @@ Link.sidebar-logo img {
    HEADER MODERNO
    =========================== */
 .modern-header {
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     padding: 1.25rem 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -861,7 +861,7 @@ Link.sidebar-logo img {
 .material-nav-btn {
     flex: 1;
     min-width: 200px;
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     color: white !important;
     border: none;
     padding: 1rem 1.5rem;
@@ -880,7 +880,7 @@ Link.sidebar-logo img {
 .material-nav-btn:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(19, 58, 84, 0.4);
-    background: linear-gradient(135deg, #f5e42c 0%, #133a54 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
 }
 
 .material-nav-btn:disabled {
@@ -986,13 +986,13 @@ Link.sidebar-logo img {
 }
 
 .modern-pdf-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .modern-pdf-container::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #f5e42c 0%, #133a54 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
 }
 
 /* ===========================
@@ -1123,7 +1123,7 @@ Link.sidebar-logo img {
 .loading-animation .circle {
     width: 16px;
     height: 16px;
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     border-radius: 50%;
     animation: bounce 1.4s infinite ease-in-out both;
 }
@@ -1198,7 +1198,7 @@ Link.sidebar-logo img {
 }
 
 .modern-nav-btn {
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     border: none;
     padding: 0.6rem;
     cursor: pointer;
@@ -1289,7 +1289,7 @@ Link.sidebar-logo img {
 }
 
 .modern-nav-btn {
-    background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%);
     border: none;
     padding: 0.6rem;
     cursor: pointer;

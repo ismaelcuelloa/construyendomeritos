@@ -42,7 +42,7 @@ class CourseController extends Controller
     {
 
         $query = Course::query()
-            ->with(['metadata', 'modules.files.file', 'category'])
+            ->with(['metadata', 'modules.files.file', 'modules.exam', 'category'])
             ->withCount(['subscriptions'])
             ->visible()
             ->slug($id);
@@ -90,7 +90,7 @@ class CourseController extends Controller
             $file = ModuleFile::query()->with(['file', 'module'])->findOrFail($id);
 
             // Cargar el curso incluyendo la relación file dentro de modules.files
-            $course = Course::query()->with(['modules.files.file', 'category'])->visible()->findOrFail($file->module->course_id);
+            $course = Course::query()->with(['modules.files.file', 'modules.exam', 'category'])->visible()->findOrFail($file->module->course_id);
 
             // Construir la ruta completa del archivo usando el atributo full_name (append en el modelo)
             $filePath = public_path($file->file->getFullName());

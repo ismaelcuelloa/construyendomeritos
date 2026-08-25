@@ -88,6 +88,13 @@ export interface Module {
     updated_at: string;
     course?: Course;
     files?: ModuleFile[];
+    exam?: {
+        id: number;
+        title: string;
+        time_limit: number | null;
+        passing_score: number;
+        active: boolean;
+    };
 }
 
 export interface ModuleFile {
