@@ -286,7 +286,7 @@ const handleAddToCart = () => {
                                             <h6>¿Tienes dudas?</h6>
                                             <p>Contáctanos para más información</p>
                                             <a
-                                                href="https://api.whatsapp.com/send/?phone=573054208045&text&type=phone_number&app_absent=0"
+                                                href="https://api.whatsapp.com/send/?phone=573236871881&text&type=phone_number&app_absent=0"
                                                 class="contact-link"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
