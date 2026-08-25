@@ -28,6 +28,10 @@ const mainHomeUrl = computed(() => {
     const mainDomain = (page.props as any).mainDomain;
     return mainDomain ? `https://${mainDomain}/` : '/';
 });
+const mainUrl = (path: string) => {
+    const mainDomain = (page.props as any).mainDomain;
+    return mainDomain ? `https://${mainDomain}${path}` : path;
+};
 
 const toggleMobileMenu = () => {
     mobileMenuOpen.value = !mobileMenuOpen.value;
@@ -93,23 +97,23 @@ onMounted(() => {
                                 </li>
 
                                 <li class="with-megamenu has-menu-child-item">
-                                    <Link href="/cursos">Materiales de Estudio</Link>
+                                    <Link :href="isSimulacros ? mainUrl('/cursos') : '/cursos'">Materiales de Estudio</Link>
                                 </li>
 
                                 <li v-if="auth.user" class="with-megamenu has-menu-child-item">
-                                    <Link href="/mis_cursos">Mis Materiales</Link>
+                                    <Link :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">Mis Materiales</Link>
                                 </li>
 
                                 <li v-if="isAdmin()" class="with-megamenu has-menu-child-item">
-                                    <Link href="/admin">Admin Panel</Link>
+                                    <Link :href="isSimulacros ? mainUrl('/admin') : '/admin'">Admin Panel</Link>
                                 </li>
 
                                 <li v-if="!auth.user" class="with-megamenu has-menu-child-item">
-                                    <Link href="/login">Iniciar Sesión</Link>
+                                    <Link :href="isSimulacros ? mainUrl('/login') : '/login'">Iniciar Sesión</Link>
                                 </li>
 
                                 <li v-if="!auth.user" class="with-megamenu has-menu-child-item">
-                                    <Link href="/register">Registrarse</Link>
+                                    <Link :href="isSimulacros ? mainUrl('/register') : '/register'">Registrarse</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -147,25 +151,25 @@ onMounted(() => {
                                         </div>
                                         <ul class="user-list-wrapper">
                                             <li v-if="isAdmin()">
-                                                <Link href="/admin">
+                                                <Link :href="isSimulacros ? mainUrl('/admin') : '/admin'">
                                                     <i class="feather-shield"></i>
                                                     <span>Panel de Administración</span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/mis_cursos">
+                                                <Link :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">
                                                     <i class="feather-book-open"></i>
                                                     <span>Mis Materiales</span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/mis_compras">
+                                                <Link :href="isSimulacros ? mainUrl('/mis_compras') : '/mis_compras'">
                                                     <i class="feather-shopping-bag"></i>
                                                     <span>Mis Compras</span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/change-password">
+                                                <Link :href="isSimulacros ? mainUrl('/change-password') : '/change-password'">
                                                     <i class="feather-lock"></i>
                                                     <span>Cambiar Contraseña</span>
                                                 </Link>
@@ -201,25 +205,25 @@ onMounted(() => {
                                         </div>
                                         <ul class="user-list-wrapper">
                                             <li v-if="isAdmin()">
-                                                <Link href="/admin">
+                                                <Link :href="isSimulacros ? mainUrl('/admin') : '/admin'">
                                                     <i class="feather-shield"></i>
                                                     <span>Panel de Administración</span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/mis_cursos">
+                                                <Link :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">
                                                     <i class="feather-book-open"></i>
                                                     <span>Mis Materiales</span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/mis_compras">
+                                                <Link :href="isSimulacros ? mainUrl('/mis_compras') : '/mis_compras'">
                                                     <i class="feather-shopping-bag"></i>
                                                     <span>Mis Compras</span>
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/change-password">
+                                                <Link :href="isSimulacros ? mainUrl('/change-password') : '/change-password'">
                                                     <i class="feather-lock"></i>
                                                     <span>Cambiar Contraseña</span>
                                                 </Link>
@@ -446,19 +450,19 @@ onMounted(() => {
                         <Link @click="closeMobileMenu" :href="isSimulacros ? mainHomeUrl : '/'">Inicio</Link>
                     </li>
                     <li>
-                        <Link @click="closeMobileMenu" href="/cursos">Materiales de Estudio</Link>
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/cursos') : '/cursos'">Materiales de Estudio</Link>
                     </li>
                     <li v-if="auth.user">
-                        <Link @click="closeMobileMenu" href="/mis_cursos">Mis Materiales</Link>
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">Mis Materiales</Link>
                     </li>
                     <li v-if="isAdmin()">
-                        <Link @click="closeMobileMenu" href="/admin">Admin Panel</Link>
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/admin') : '/admin'">Admin Panel</Link>
                     </li>
                     <li v-if="!auth.user">
-                        <Link @click="closeMobileMenu" href="/login">Iniciar Sesión</Link>
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/login') : '/login'">Iniciar Sesión</Link>
                     </li>
                     <li v-if="!auth.user">
-                        <Link @click="closeMobileMenu" href="/register">Registrarse</Link>
+                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/register') : '/register'">Registrarse</Link>
                     </li>
                     <li v-if="auth.user">
                         <Link @click="closeMobileMenu" href="/logout" method="post" as="button" class="logout-mobile-btn">
