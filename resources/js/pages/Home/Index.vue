@@ -135,8 +135,8 @@ const getDisplayCode = (course: Course) => {
                         Material de estudio - Procuraduría General de la Nación 2026
                     </div>
                     <h1 class="hero__title"><span>Construyendo Méritos con Excelencia</span></h1>
-                    <p class="hero__subtitle">Prepárate para alcanzar tu cargo público ideal en la Procuraduría.</p>
-                    <p class="hero__subtitle hero__subtitle--secondary">Encuentra simulacros, guías de estudio y material actualizado para prepararte de manera efectiva y aumentar tus posibilidades de éxito en el concurso de la Procuraduría General de la Nación.</p>
+                    <p class="hero__subtitle">Material de preparación independiente — Prepárate para alcanzar tu cargo público ideal.</p>
+                    <p class="hero__subtitle hero__subtitle--secondary">Encuentra simulacros, guías de estudio y material actualizado. No realizamos trámites ni inscripciones; ofrecemos únicamente material de estudio para la convocatoria.</p>
                 </div>
             </section>
 
@@ -145,7 +145,7 @@ const getDisplayCode = (course: Course) => {
                 <div class="search-container">
                     <div class="search-header">
                         <h2 class="search-title">Buscar Convocatorias</h2>
-                        <p class="search-subtitle">Filtre por código, grado o nivel para encontrar el material de estudio de su interes.</p>
+                        <p class="search-subtitle">Filtre por código, grado o nivel para encontrar el material de estudio de su interés.</p>
                     </div>
 
                     <div class="search-grid">
@@ -968,19 +968,33 @@ select.search-input option {
     }
 
     .hero__badge {
-        display: none;
+        display: inline-flex;
+        font-size: 12px;
+        padding: 0.4rem 0.9rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
+        line-height: 1.4;
+        white-space: normal;
+        max-width: 95%;
     }
 
     .hero__subtitle--secondary {
-        display: none;
+        display: block;
+        font-size: 13px;
+        line-height: 1.6;
+        max-width: 95%;
+        margin: 10px auto 0;
+        padding: 0 12px;
     }
 
     .hero__title {
-        font-size: 36px;
+        font-size: 32px;
+        line-height: 1.15;
     }
 
     .hero__subtitle {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.5;
     }
 
     .results-header {

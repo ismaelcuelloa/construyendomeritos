@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import IndependenceDisclaimer from '@/components/shared/IndependenceDisclaimer.vue';
 import SeoHead from '@/components/shared/SeoHead.vue';
 import AppWebLayout from '@/layouts/AppWebLayout.vue';
 import { usePage } from '@inertiajs/vue3';
@@ -22,6 +23,8 @@ const page = usePage();
                             <h2 class="subtitle">CONSTRUYENDO MÉRITOS CON EXCELENCIA</h2>
                             <p class="last-update">Última actualización: 24 de Agosto de 2026</p>
                         </div>
+
+                        <IndependenceDisclaimer variant="legal" />
 
                         <div class="legal-content">
                             <section class="legal-section">

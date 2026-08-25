@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import IndependenceDisclaimer from '@/components/shared/IndependenceDisclaimer.vue';
 import SeoHead from '@/components/shared/SeoHead.vue';
 import AppWebLayout from '@/layouts/AppWebLayout.vue';
 import { usePage } from '@inertiajs/vue3';
@@ -23,7 +24,29 @@ const page = usePage();
                             <p class="last-update">Última actualización: 24 de agosto de 2026</p>
                         </div>
 
+                        <IndependenceDisclaimer variant="legal" />
+
                         <div class="legal-content">
+                            <section class="legal-section legal-section--highlight">
+                                <h3>0. Aviso de Independencia y Descargo de Responsabilidad</h3>
+                                <p>
+                                    Este sitio web <strong>(meritoconstruyendoexcelencia.com)</strong> es una plataforma <strong>privada e independiente</strong>.
+                                    <strong>NO formamos parte de la Procuraduría General de la Nación</strong>, ni tenemos vínculo institucional, patrocinio o relación comercial con la convocatoria oficial.
+                                </p>
+                                <p>
+                                    El contenido ofrecido consiste <strong>exclusivamente en material pedagógico de estudio y preparación general</strong> para aspirantes — <em>material de preparación independiente</em> para postulantes.
+                                    <strong>No comercializamos inscripciones, certificados ni influimos en los resultados del proceso de selección.</strong>
+                                </p>
+                                <ul>
+                                    <li>No realizamos trámites, inscripciones o gestiones ante la Procuraduría.</li>
+                                    <li>No utilizamos logotipos, escudos patrios, ni tipografías oficiales que puedan inducir a error sobre el origen del sitio.</li>
+                                    <li>Todo material es de carácter preventivo y formativo, sin garantía de aprobación o nombramiento.</li>
+                                </ul>
+                                <p>
+                                    <strong>Versión corta para comunicaciones:</strong> <em>Aviso: Sitio web privado e independiente de la Procuraduría. No realizamos trámites ni inscripciones; ofrecemos únicamente material de estudio para la convocatoria.</em>
+                                </p>
+                            </section>
+
                             <section class="legal-section">
                                 <h3>1. Identificación del prestador del servicio</h3>
                                 <p>
@@ -49,13 +72,13 @@ const page = usePage();
                             <section class="legal-section">
                                 <h3>3. Objeto del servicio</h3>
                                 <p>
-                                    CONSTRUYENDO MÉRITOS CON EXCELENCIA ofrece material educativo digital, guías de estudio, simulacros tipo prueba, contenidos de
-                                    apoyo académico y, en algunos casos, cursos virtuales, orientados a la preparación para convocatorias públicas,
+                                    CONSTRUYENDO MÉRITOS CON EXCELENCIA ofrece <strong>material de preparación independiente</strong> en formato digital: guías de estudio no oficiales, simulacros tipo prueba, contenidos de
+                                    apoyo académico y, en algunos casos, cursos virtuales, orientados a la preparación general para convocatorias públicas,
                                     concursos de mérito y procesos de selección en Colombia.
                                 </p>
                                 <p>
-                                    Los contenidos tienen fines pedagógicos y de entrenamiento académico, y no constituyen garantía de aprobación,
-                                    nombramiento o resultado favorable en ninguna convocatoria.
+                                    Los contenidos tienen fines exclusivamente <strong>pedagógicos y de entrenamiento académico</strong>, y no constituyen garantía de aprobación,
+                                    nombramiento o resultado favorable en ninguna convocatoria. Se reitera que la plataforma es <strong>independiente y no oficial</strong>, sin vínculo con la Procuraduría General de la Nación.
                                 </p>
                             </section>
 
@@ -243,6 +266,14 @@ const page = usePage();
     padding-bottom: 8px;
     border-bottom: 2px solid #f5e42c;
     display: inline-block;
+}
+
+.legal-section--highlight {
+    background: #fffbeb;
+    border: 1.5px solid #f59e0b;
+    border-left: 4px solid #d97706;
+    border-radius: 12px;
+    padding: 20px 24px;
 }
 
 .legal-section h3 {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import IndependenceDisclaimer from '@/components/shared/IndependenceDisclaimer.vue';
 import { Link } from '@inertiajs/vue3';
 import { computed, onMounted, onUnmounted } from 'vue';
 
@@ -31,6 +32,10 @@ onMounted(() => {
     <footer class="site-footer">
         <div class="footer-main">
             <div class="container">
+                <!-- Aviso Legal arriba de Construyendo Méritos con Excelencia -->
+                <div class="footer-disclaimer-wrapper footer-disclaimer-wrapper--top">
+                    <IndependenceDisclaimer variant="footer" />
+                </div>
                 <div class="footer-grid">
                     <!-- Logo y descripción -->
                     <div class="footer-col footer-col--brand footer-animate">
@@ -39,7 +44,7 @@ onMounted(() => {
                         </a>
                         <p class="footer-desc">
                             Construyendo Méritos con Excelencia<br />
-                            Material de estudio especializado para la Procuraduría General de la Nación 2026. Simulacros, guías y recursos actualizados para alcanzar tu cargo ideal.
+                            <strong>Material de preparación independiente — Guía de estudio no oficial</strong> para la Procuraduría General de la Nación 2026. Simulacros, guías y recursos actualizados para alcanzar tu cargo ideal.
                         </p>
                         <div class="footer-social">
                             <a href="https://www.facebook.com/" target="_blank" title="Facebook" class="social-link">
@@ -82,14 +87,14 @@ onMounted(() => {
                                 <i class="fab fa-whatsapp"></i>
                                 <div>
                                     <span class="contact-label">Atención:</span>
-                                    <a href="https://wa.me/57" target="_blank">+57 3236871881</a>
+                                    <a href="https://wa.me/573236871881?text=Hola,%20necesito%20atenci%C3%B3n%20para%20un%20material%20de%20estudio" target="_blank" rel="noopener noreferrer">+57 3236871881</a>
                                 </div>
                             </li>
                             <li>
                                 <i class="fab fa-whatsapp"></i>
                                 <div>
                                     <span class="contact-label">Soporte:</span>
-                                    <a href="https://wa.me/57" target="_blank">+57 3236871881</a>
+                                    <a href="https://wa.me/573236871881?text=Hola,%20necesito%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener noreferrer">+57 3236871881</a>
                                 </div>
                             </li>
                         </ul>
@@ -125,7 +130,7 @@ onMounted(() => {
 }
 
 .footer-main {
-    padding: 70px 0 50px;
+    padding: 28px 0 20px;
 }
 
 .container {
@@ -137,7 +142,7 @@ onMounted(() => {
 .footer-grid {
     display: grid;
     grid-template-columns: 1.4fr 1.2fr 0.9fr 1.1fr;
-    gap: 40px;
+    gap: 24px;
 }
 
 .footer-col {
@@ -166,15 +171,15 @@ onMounted(() => {
 }
 
 .footer-logo img {
-    height: 36px;
+    height: 28px;
     width: auto;
 }
 
 .footer-desc {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-    line-height: 1.7;
-    margin: 0 0 20px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0 0 12px;
 }
 
 .footer-social {
@@ -203,14 +208,14 @@ onMounted(() => {
 }
 
 .footer-heading {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     color: #f5e42c;
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
 }
 
 .footer-heading::after {
@@ -231,13 +236,13 @@ onMounted(() => {
 }
 
 .footer-list li {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .footer-list a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     transition: all 0.3s ease;
     display: inline-block;
@@ -249,9 +254,9 @@ onMounted(() => {
 }
 
 .footer-list--info li {
-    font-size: 13px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .footer-list--info strong {
@@ -261,7 +266,7 @@ onMounted(() => {
 
 .footer-list--info a {
     color: #f5e42c;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .footer-list--info a:hover {
@@ -272,16 +277,16 @@ onMounted(() => {
 .footer-list--contact li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .footer-list--contact li > i {
-    font-size: 18px;
+    font-size: 14px;
     color: #f5e42c;
     margin-top: 2px;
     flex-shrink: 0;
-    width: 20px;
+    width: 16px;
 }
 
 .footer-list--contact .contact-label {
@@ -294,7 +299,7 @@ onMounted(() => {
 }
 
 .footer-list--contact a {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
 }
@@ -305,22 +310,22 @@ onMounted(() => {
 }
 
 .footer-list--contact span {
-    font-size: 14px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.9);
 }
 
 .footer-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: #f5e42c;
     color: #11364f;
     font-weight: 700;
-    font-size: 14px;
-    padding: 12px 28px;
-    border-radius: 8px;
+    font-size: 12px;
+    padding: 8px 18px;
+    border-radius: 6px;
     text-decoration: none;
-    margin-top: 8px;
+    margin-top: 6px;
     transition: all 0.3s ease;
 }
 
@@ -337,6 +342,20 @@ onMounted(() => {
 
 .footer-btn:hover i {
     transform: translateX(4px);
+}
+
+.footer-disclaimer-wrapper {
+    padding: 0 0 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 24px;
+}
+
+.footer-disclaimer-wrapper--top {
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
 }
 
 .footer-bottom {

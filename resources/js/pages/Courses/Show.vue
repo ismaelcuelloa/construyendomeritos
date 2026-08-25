@@ -436,6 +436,38 @@ const handleAddToCart = () => {
     border: 1px solid rgba(40, 167, 69, 0.3);
 }
 
+.independence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(17, 54, 79, 0.12);
+    border-left: 3px solid #f59e0b;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #78350f;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 16px rgba(17, 54, 79, 0.08);
+}
+
+.independence-badge__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 50%;
+    color: #d97706;
+    flex-shrink: 0;
+}
+
 .course-title {
     font-size: 3.5rem;
     font-weight: 900;

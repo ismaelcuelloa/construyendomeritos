@@ -91,6 +91,10 @@ const goToCourses = () => {
                 </div>
 
                 <div class="rbt-minicart-bottom">
+                    <div class="cart-legal-notice">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <p><strong>Aviso importante:</strong> Al proceder con el pago, aceptas que estás comprando material de estudio de una plataforma privada, sin ninguna relación institucional o comercial con la convocatoria oficial de la Procuraduría.</p>
+                    </div>
                     <Button :disabled="cart.paying.value" @click="cart.checkout()" class="checkout-btn w-100">
                         <ShoppingCart :size="18" v-if="!cart.paying.value" />
                         <div v-if="cart.paying.value" class="spinner"></div>
@@ -434,6 +438,31 @@ const goToCourses = () => {
     background: linear-gradient(135deg, #133a54 0%, #f5e42c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.cart-legal-notice {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 3px solid #f59e0b;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+}
+
+.cart-legal-notice p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #92400e;
+    font-weight: 500;
+}
+
+.cart-legal-notice p strong {
+    font-weight: 800;
+    color: #78350f;
 }
 
 .checkout-btn {
