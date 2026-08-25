@@ -206,14 +206,14 @@ const page = usePage();
 .legal-header h1 {
     font-size: 42px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #133a54;
     margin-bottom: 8px;
 }
 
 .legal-header h2.subtitle {
     font-size: 28px;
     font-weight: 600;
-    color: #ff751f;
+    color: #133a54;
     margin-bottom: 12px;
 }
 
@@ -237,21 +237,21 @@ const page = usePage();
 
 .legal-section h2 {
     font-size: 20px;
-    font-weight: 600;
-    color: #ff751f;
+    font-weight: 700;
+    color: #133a54;
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 2px solid #ff751f;
+    border-bottom: 2px solid #f5e42c;
     display: inline-block;
 }
 
 .legal-section h3 {
     font-size: 20px;
-    font-weight: 600;
-    color: #ff751f;
+    font-weight: 700;
+    color: #133a54;
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 2px solid #ff751f;
+    border-bottom: 2px solid #f5e42c;
     display: inline-block;
 }
 
