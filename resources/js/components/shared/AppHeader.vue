@@ -73,13 +73,19 @@ onMounted(() => {
                     <div class="header-left rbt-header-content">
                         <div class="header-info">
                             <div class="logo logo-dark">
-                                <Link :href="isSimulacros ? mainHomeUrl : '/'" class="logo-link">
+                                <a v-if="isSimulacros" :href="mainHomeUrl" class="logo-link">
+                                    <img src="/assets/images/logo/logo-color.png" alt="Education Logo Images" />
+                                </a>
+                                <Link v-else href="/" class="logo-link">
                                     <img src="/assets/images/logo/logo-color.png" alt="Education Logo Images" />
                                 </Link>
                             </div>
 
                             <div class="logo d-none logo-light">
-                                <Link :href="isSimulacros ? mainHomeUrl : '/'">
+                                <a v-if="isSimulacros" :href="mainHomeUrl">
+                                    <img src="/assets/images/logo/logo-color.png" alt="Education Logo Images" />
+                                </a>
+                                <Link v-else href="/">
                                     <img src="/assets/images/logo/logo-color.png" alt="Education Logo Images" />
                                 </Link>
                             </div>
@@ -90,30 +96,36 @@ onMounted(() => {
                         <nav class="mainmenu-nav">
                             <ul class="mainmenu">
                                 <li class="with-megamenu has-menu-child-item position-static menu-item-open">
-                                    <Link :href="isSimulacros ? mainHomeUrl : '/'">Inicio</Link>
+                                    <a v-if="isSimulacros" :href="mainHomeUrl">Inicio</a>
+                                    <Link v-else href="/">Inicio</Link>
                                     <!-- Start Mega Menu  -->
 
                                     <!-- End Mega Menu  -->
                                 </li>
 
                                 <li class="with-megamenu has-menu-child-item">
-                                    <Link :href="isSimulacros ? mainUrl('/cursos') : '/cursos'">Materiales de Estudio</Link>
+                                    <a v-if="isSimulacros" :href="mainUrl('/cursos')">Materiales de Estudio</a>
+                                    <Link v-else href="/cursos">Materiales de Estudio</Link>
                                 </li>
 
                                 <li v-if="auth.user" class="with-megamenu has-menu-child-item">
-                                    <Link :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">Mis Materiales</Link>
+                                    <a v-if="isSimulacros" :href="mainUrl('/mis_cursos')">Mis Materiales</a>
+                                    <Link v-else href="/mis_cursos">Mis Materiales</Link>
                                 </li>
 
                                 <li v-if="isAdmin()" class="with-megamenu has-menu-child-item">
-                                    <Link :href="isSimulacros ? mainUrl('/admin') : '/admin'">Admin Panel</Link>
+                                    <a v-if="isSimulacros" :href="mainUrl('/admin')">Admin Panel</a>
+                                    <Link v-else href="/admin">Admin Panel</Link>
                                 </li>
 
                                 <li v-if="!auth.user" class="with-megamenu has-menu-child-item">
-                                    <Link :href="isSimulacros ? mainUrl('/login') : '/login'">Iniciar Sesión</Link>
+                                    <a v-if="isSimulacros" :href="mainUrl('/login')">Iniciar Sesión</a>
+                                    <Link v-else href="/login">Iniciar Sesión</Link>
                                 </li>
 
                                 <li v-if="!auth.user" class="with-megamenu has-menu-child-item">
-                                    <Link :href="isSimulacros ? mainUrl('/register') : '/register'">Registrarse</Link>
+                                    <a v-if="isSimulacros" :href="mainUrl('/register')">Registrarse</a>
+                                    <Link v-else href="/register">Registrarse</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -151,28 +163,20 @@ onMounted(() => {
                                         </div>
                                         <ul class="user-list-wrapper">
                                             <li v-if="isAdmin()">
-                                                <Link :href="isSimulacros ? mainUrl('/admin') : '/admin'">
-                                                    <i class="feather-shield"></i>
-                                                    <span>Panel de Administración</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/admin')"><i class="feather-shield"></i><span>Panel de Administración</span></a>
+                                                <Link v-else href="/admin"><i class="feather-shield"></i><span>Panel de Administración</span></Link>
                                             </li>
                                             <li>
-                                                <Link :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">
-                                                    <i class="feather-book-open"></i>
-                                                    <span>Mis Materiales</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/mis_cursos')"><i class="feather-book-open"></i><span>Mis Materiales</span></a>
+                                                <Link v-else href="/mis_cursos"><i class="feather-book-open"></i><span>Mis Materiales</span></Link>
                                             </li>
                                             <li>
-                                                <Link :href="isSimulacros ? mainUrl('/mis_compras') : '/mis_compras'">
-                                                    <i class="feather-shopping-bag"></i>
-                                                    <span>Mis Compras</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/mis_compras')"><i class="feather-shopping-bag"></i><span>Mis Compras</span></a>
+                                                <Link v-else href="/mis_compras"><i class="feather-shopping-bag"></i><span>Mis Compras</span></Link>
                                             </li>
                                             <li>
-                                                <Link :href="isSimulacros ? mainUrl('/change-password') : '/change-password'">
-                                                    <i class="feather-lock"></i>
-                                                    <span>Cambiar Contraseña</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/change-password')"><i class="feather-lock"></i><span>Cambiar Contraseña</span></a>
+                                                <Link v-else href="/change-password"><i class="feather-lock"></i><span>Cambiar Contraseña</span></Link>
                                             </li>
                                         </ul>
                                         <hr class="mt--10 mb--10" />
@@ -205,28 +209,20 @@ onMounted(() => {
                                         </div>
                                         <ul class="user-list-wrapper">
                                             <li v-if="isAdmin()">
-                                                <Link :href="isSimulacros ? mainUrl('/admin') : '/admin'">
-                                                    <i class="feather-shield"></i>
-                                                    <span>Panel de Administración</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/admin')"><i class="feather-shield"></i><span>Panel de Administración</span></a>
+                                                <Link v-else href="/admin"><i class="feather-shield"></i><span>Panel de Administración</span></Link>
                                             </li>
                                             <li>
-                                                <Link :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">
-                                                    <i class="feather-book-open"></i>
-                                                    <span>Mis Materiales</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/mis_cursos')"><i class="feather-book-open"></i><span>Mis Materiales</span></a>
+                                                <Link v-else href="/mis_cursos"><i class="feather-book-open"></i><span>Mis Materiales</span></Link>
                                             </li>
                                             <li>
-                                                <Link :href="isSimulacros ? mainUrl('/mis_compras') : '/mis_compras'">
-                                                    <i class="feather-shopping-bag"></i>
-                                                    <span>Mis Compras</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/mis_compras')"><i class="feather-shopping-bag"></i><span>Mis Compras</span></a>
+                                                <Link v-else href="/mis_compras"><i class="feather-shopping-bag"></i><span>Mis Compras</span></Link>
                                             </li>
                                             <li>
-                                                <Link :href="isSimulacros ? mainUrl('/change-password') : '/change-password'">
-                                                    <i class="feather-lock"></i>
-                                                    <span>Cambiar Contraseña</span>
-                                                </Link>
+                                                <a v-if="isSimulacros" :href="mainUrl('/change-password')"><i class="feather-lock"></i><span>Cambiar Contraseña</span></a>
+                                                <Link v-else href="/change-password"><i class="feather-lock"></i><span>Cambiar Contraseña</span></Link>
                                             </li>
                                         </ul>
                                         <hr class="mt--10 mb--10" />
@@ -418,7 +414,10 @@ onMounted(() => {
             <div class="inner-top">
                 <div class="content">
                     <div class="logo">
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainHomeUrl : '/'">
+                        <a v-if="isSimulacros" :href="mainHomeUrl">
+                            <img src="/assets/images/logo/logo-color.png" alt="Education Logo" />
+                        </a>
+                        <Link v-else @click="closeMobileMenu" href="/">
                             <img src="/assets/images/logo/logo-color.png" alt="Education Logo" />
                         </Link>
                     </div>
@@ -447,22 +446,28 @@ onMounted(() => {
             <nav class="mainmenu-nav">
                 <ul class="mainmenu">
                     <li>
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainHomeUrl : '/'">Inicio</Link>
+                        <a v-if="isSimulacros" :href="mainHomeUrl">Inicio</a>
+                        <Link v-else @click="closeMobileMenu" href="/">Inicio</Link>
                     </li>
                     <li>
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/cursos') : '/cursos'">Materiales de Estudio</Link>
+                        <a v-if="isSimulacros" :href="mainUrl('/cursos')">Materiales de Estudio</a>
+                        <Link v-else @click="closeMobileMenu" href="/cursos">Materiales de Estudio</Link>
                     </li>
                     <li v-if="auth.user">
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/mis_cursos') : '/mis_cursos'">Mis Materiales</Link>
+                        <a v-if="isSimulacros" :href="mainUrl('/mis_cursos')">Mis Materiales</a>
+                        <Link v-else @click="closeMobileMenu" href="/mis_cursos">Mis Materiales</Link>
                     </li>
                     <li v-if="isAdmin()">
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/admin') : '/admin'">Admin Panel</Link>
+                        <a v-if="isSimulacros" :href="mainUrl('/admin')">Admin Panel</a>
+                        <Link v-else @click="closeMobileMenu" href="/admin">Admin Panel</Link>
                     </li>
                     <li v-if="!auth.user">
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/login') : '/login'">Iniciar Sesión</Link>
+                        <a v-if="isSimulacros" :href="mainUrl('/login')">Iniciar Sesión</a>
+                        <Link v-else @click="closeMobileMenu" href="/login">Iniciar Sesión</Link>
                     </li>
                     <li v-if="!auth.user">
-                        <Link @click="closeMobileMenu" :href="isSimulacros ? mainUrl('/register') : '/register'">Registrarse</Link>
+                        <a v-if="isSimulacros" :href="mainUrl('/register')">Registrarse</a>
+                        <Link v-else @click="closeMobileMenu" href="/register">Registrarse</Link>
                     </li>
                     <li v-if="auth.user">
                         <Link @click="closeMobileMenu" href="/logout" method="post" as="button" class="logout-mobile-btn">
