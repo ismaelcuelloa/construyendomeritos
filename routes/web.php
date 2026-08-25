@@ -94,8 +94,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
             Route::group(['prefix' => 'cursos'], function () {
                 Route::post('list', [AdminCourseController::class, 'list']);
+                Route::get('{id}/codes-template', [AdminCourseController::class, 'codesTemplate'])->where('id', '[0-9]+');
                 Route::post('{id}/copy', [AdminCourseController::class, 'copy'])->where('id', '[0-9]+');
                 Route::post('{id}/metadata', [AdminCourseController::class, 'metadata'])->where('id', '[0-9]+');
+                Route::post('{id}/import-codes', [AdminCourseController::class, 'importCodes'])->where('id', '[0-9]+');
 
                 Route::group(['prefix' => 'modulos'], function () {
                     Route::resource('archivos', ModuleFileController::class);

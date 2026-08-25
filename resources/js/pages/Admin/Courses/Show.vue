@@ -119,6 +119,89 @@ const removeCode = (c: string) => {
     courseCodes.value = courseCodes.value.filter(item => item !== c);
 };
 
+const codesFileInput = ref<HTMLInputElement | null>(null);
+const importingCodes = ref(false);
+
+const codesModalOpen = ref(false);
+const codesDraft = ref<string[]>([]);
+const codesInputDraft = ref('');
+
+const openCodesModal = () => {
+    codesDraft.value = [...courseCodes.value];
+    codesInputDraft.value = '';
+    codesModalOpen.value = true;
+};
+
+const closeCodesModal = () => {
+    if (!importingCodes.value) {
+        codesModalOpen.value = false;
+    }
+};
+
+const addCodeDraft = () => {
+    const trimmed = codesInputDraft.value.trim();
+    if (trimmed && !codesDraft.value.includes(trimmed)) {
+        codesDraft.value.push(trimmed);
+    }
+    codesInputDraft.value = '';
+};
+
+const removeCodeDraft = (c: string) => {
+    codesDraft.value = codesDraft.value.filter(item => item !== c);
+};
+
+const clearAllCodes = () => {
+    if (window.confirm('¿Estás seguro de eliminar TODOS los códigos de convocatoria? Esta acción no se puede deshacer.')) {
+        codesDraft.value = [];
+        codesInputDraft.value = '';
+    }
+};
+
+const saveCodesModal = async () => {
+    importingCodes.value = true;
+    try {
+        await Client.put(`${Client.ADMIN_COURSES}/${props.course.id}`, { codes: codesDraft.value });
+        courseCodes.value = [...codesDraft.value];
+        Toast.success('Códigos actualizados con éxito');
+        codesModalOpen.value = false;
+    } catch (e: any) {
+        Toast.error(e?.response?.data?.message || 'Error al guardar los códigos');
+    }
+    importingCodes.value = false;
+};
+
+const downloadCodesTemplate = () => {
+    window.open(Client.getEndpoint(`${Client.ADMIN_COURSES}/${props.course.id}/codes-template`), '_blank');
+};
+
+const triggerCodesImport = () => {
+    codesFileInput.value?.click();
+};
+
+const onCodesFileChange = async (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files?.[0];
+    if (!file) return;
+
+    importingCodes.value = true;
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const response = await Client.post(`${Client.ADMIN_COURSES}/${props.course.id}/import-codes`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        const imported = response.data.codes ?? [];
+        const arr = Array.isArray(imported) ? imported.map((c: any) => (typeof c === 'string' ? c : c.code)) : [];
+        codesDraft.value = arr;
+        courseCodes.value = arr;
+        Toast.success(response.data.message || 'Códigos importados con éxito');
+    } catch (err: any) {
+        Toast.error(err?.response?.data?.message || 'Error al importar el archivo');
+    }
+    importingCodes.value = false;
+    target.value = '';
+};
+
 const handleFileInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
 
@@ -403,32 +486,21 @@ watch(targetCategoryId, () => {
 
                             <div class="course-field mb-4">
                                 <label class="field-label">Códigos de Convocatoria</label>
-                                <div class="codes-list">
-                                    <div v-for="(c, idx) in courseCodes" :key="idx" class="code-tag">
-                                        <span>{{ c }}</span>
-                                        <button type="button" class="code-tag-remove" @click="removeCode(c)" :disabled="saving">&times;</button>
-                                    </div>
+                                <div class="codes-summary">
                                     <div v-if="courseCodes.length === 0" class="codes-empty">
                                         No hay códigos adicionales.
                                     </div>
+                                    <div v-else class="codes-summary-preview">
+                                        <span class="code-tag" v-for="(c, idx) in courseCodes.slice(0, 6)" :key="idx">{{ c }}</span>
+                                        <span v-if="courseCodes.length > 6" class="codes-more">+{{ courseCodes.length - 6 }} más</span>
+                                    </div>
                                 </div>
-                                <div class="codes-add-row mt-2">
-                                    <input
-                                        :disabled="saving"
-                                        type="text"
-                                        v-model="newCode"
-                                        class="codes-input"
-                                        placeholder="Ej: 108-2026"
-                                        @keyup.enter="addCode"
-                                    />
-                                    <Button :disabled="saving || !newCode.trim()" @click="addCode" size="sm" class="btn-add-code-modal">
-                                        Agregar
+                                <div class="codes-actions mt-2">
+                                    <Button :disabled="saving" @click="openCodesModal" size="sm" class="btn-manage-code-modal">
+                                        <i class="feather-edit"></i>
+                                        Gestionar Códigos
                                     </Button>
                                 </div>
-                                <small class="info-text d-block mt-2">
-                                    <i class="feather-info"></i>
-                                    Agregue todos los códigos de convocatoria asociados a este curso.
-                                </small>
                             </div>
 
                             <Input :disabled="saving" title="Código y Grado" v-model="grado" placeholder="Ej: 3PU-15">
@@ -653,6 +725,57 @@ watch(targetCategoryId, () => {
             </AccordionItem>
         </Accordion>
     </AppAdminLayout>
+
+    <Modal :show="codesModalOpen" @update:show="(val) => { if (!val) closeCodesModal(); }" title="Códigos de Convocatoria" size="lg">
+        <div class="codes-modal-body">
+            <div class="codes-list">
+                <div v-for="(c, idx) in codesDraft" :key="idx" class="code-tag">
+                    <span>{{ c }}</span>
+                    <button type="button" class="code-tag-remove" @click="removeCodeDraft(c)" :disabled="importingCodes">&times;</button>
+                </div>
+                <div v-if="codesDraft.length === 0" class="codes-empty">
+                    No hay códigos adicionales.
+                </div>
+            </div>
+
+            <div class="codes-add-row mt-2">
+                <input
+                    :disabled="importingCodes"
+                    type="text"
+                    v-model="codesInputDraft"
+                    class="codes-input"
+                    placeholder="Ej: 108-2026"
+                    @keyup.enter="addCodeDraft"
+                />
+                <Button :disabled="importingCodes || !codesInputDraft.trim()" @click="addCodeDraft" size="sm" class="btn-add-code-modal">
+                    Agregar
+                </Button>
+            </div>
+
+            <div class="step-actions-bar codes-toolbar">
+                <Button @click="downloadCodesTemplate" size="sm" class="wiz-btn"><i class="feather-download"></i> Descargar Plantilla</Button>
+                <Button @click="triggerCodesImport" size="sm" class="wiz-btn"><i class="feather-upload"></i> Importar Excel</Button>
+                <Button v-if="codesDraft.length" @click="clearAllCodes" size="sm" class="wiz-btn-danger"><i class="feather-trash-2"></i> Limpiar</Button>
+                <input ref="codesFileInput" type="file" accept=".xlsx,.xls,.csv" class="hidden-file-input" @change="onCodesFileChange" />
+            </div>
+
+            <small class="info-text d-block mt-2">
+                <i class="feather-info"></i>
+                Agregue todos los códigos de convocatoria asociados a este curso. Use la plantilla de Excel para importar de forma masiva.
+            </small>
+        </div>
+
+        <template #footer>
+            <div class="footer-buttons-modal">
+                <Button :disabled="importingCodes" @click="closeCodesModal" variant="outline" size="sm" class="btn-cancel-modal">
+                    <i class="feather-x"></i> Cancelar
+                </Button>
+                <Button :disabled="importingCodes" :loading="importingCodes" @click="saveCodesModal" size="sm" class="btn-save-modal">
+                    <i class="feather-save"></i> Guardar
+                </Button>
+            </div>
+        </template>
+    </Modal>
     <CreateModule
         :course_id="course.id"
         :module="Modules.module.value"
@@ -910,6 +1033,188 @@ watch(targetCategoryId, () => {
 
 .btn-add-code-modal:hover {
     background: linear-gradient(135deg, #1a5a80 0%, #133a54 100%) !important;
+}
+
+.codes-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-import-code-modal {
+    background: #ffffff !important;
+    color: #133a54 !important;
+    border: 2px solid rgba(19, 58, 84, 0.3) !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.btn-import-code-modal:hover {
+    background: rgba(19, 58, 84, 0.08) !important;
+    border-color: #133a54 !important;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.codes-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 36px;
+    padding: 12px 14px;
+    background: rgba(19, 58, 84, 0.03);
+    border: 1px solid rgba(19, 58, 84, 0.1);
+    border-radius: 10px;
+}
+
+.codes-summary-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.codes-more {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    padding: 4px 10px;
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+.btn-manage-code-modal {
+    background: #ffffff !important;
+    color: #133a54 !important;
+    border: 2px solid rgba(19, 58, 84, 0.3) !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.btn-manage-code-modal:hover {
+    background: rgba(19, 58, 84, 0.08) !important;
+    border-color: #133a54 !important;
+}
+
+.codes-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px 0;
+}
+
+.codes-toolbar {
+    margin-top: 16px;
+    padding: 12px 0 4px;
+    border-top: 1px solid #eef2f7;
+}
+
+.step-actions-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.wiz-btn {
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%) !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    border: 2px solid transparent !important;
+    box-shadow: 0 3px 10px rgba(19, 58, 84, 0.2) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 16px !important;
+}
+
+.wiz-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(19, 58, 84, 0.3) !important;
+}
+
+.wiz-btn-danger {
+    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%) !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    border: 2px solid transparent !important;
+    box-shadow: 0 3px 10px rgba(229, 62, 62, 0.2) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 16px !important;
+}
+
+.wiz-btn-danger:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(229, 62, 62, 0.3) !important;
+}
+
+.footer-buttons-modal {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.btn-cancel-modal {
+    background: #ffffff !important;
+    color: #666 !important;
+    border: 2px solid #ddd !important;
+    padding: 10px 20px !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.btn-cancel-modal:hover {
+    background: #f5f5f5 !important;
+    border-color: #999 !important;
+    color: #333 !important;
+}
+
+.btn-save-modal {
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #133a54 !important;
+    padding: 10px 24px !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(19, 58, 84, 0.25) !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.btn-save-modal:hover {
+    background: linear-gradient(135deg, #1a5a80 0%, #133a54 100%) !important;
+    box-shadow: 0 6px 16px rgba(19, 58, 84, 0.35) !important;
+    transform: translateY(-2px);
+}
+
+.btn-save-modal i,
+.btn-cancel-modal i {
+    font-size: 16px;
 }
 
 /* Info Text */

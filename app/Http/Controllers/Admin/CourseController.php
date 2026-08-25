@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\CourseCode;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Inertia\Inertia;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class CourseController extends Controller
 {
@@ -59,6 +61,35 @@ class CourseController extends Controller
         return Inertia::render('Admin/Courses/Show', ['course' => $course]);
     }
 
+    public function codesTemplate(Request $request, string $id)
+    {
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setTitle('Códigos de Convocatoria');
+
+        $sheet->fromArray([['Código']], null, 'A1');
+
+        $sheet->getStyle('A1')->getFont()->setBold(true);
+        $sheet->getStyle('A1')->getFont()->getColor()->setARGB('FFFFFFFF');
+        $sheet->getStyle('A1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('FF133a54');
+
+        $sheet->getColumnDimension('A')->setAutoSize(true);
+
+        $sheet->setCellValue('A2', '01-2026');
+        $sheet->setCellValue('A3', '02-2026');
+        $sheet->setCellValue('A4', '108-2026');
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $fileName = 'plantilla-codigos-convocatoria.xlsx';
+        $tempFile = tempnam(sys_get_temp_dir(), 'xlsx');
+        $writer->save($tempFile);
+
+        return response()->download($tempFile, $fileName, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ])->deleteFileAfterSend(true);
+    }
+
     public function copy(Request $request, string $id)
     {
         if (! auth()->user()->hasRole('super_user')) {
@@ -66,7 +97,6 @@ class CourseController extends Controller
                 'message' => 'Solo los super usuarios pueden copiar cursos',
             ], Response::HTTP_FORBIDDEN);
         }
-
         try {
             $course = Course::with([
                 'metadata',
@@ -128,6 +158,61 @@ class CourseController extends Controller
             return response()->json(['message' => 'Curso no encontrado'], Response::HTTP_NOT_FOUND);
         } catch (\Exception $e) {
             return $this->handleException($e);
+        }
+    }
+
+    public function importCodes(Request $request, string $id)
+    {
+        if (! auth()->user()->hasRole('super_user')) {
+            return response()->json([
+                'message' => 'Solo los super usuarios pueden importar códigos',
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,xls,csv',
+        ]);
+
+        try {
+            $file = $request->file('file');
+            $spreadsheet = IOFactory::load($file->getPathname());
+            $sheet = $spreadsheet->getActiveSheet();
+            $rows = $sheet->toArray();
+
+            $course = Course::findOrFail($id);
+            $existing = $course->codes()->pluck('code')->flip();
+            $imported = 0;
+            $skipped = 0;
+
+            foreach ($rows as $index => $row) {
+                if ($index === 0) continue; // skip header
+
+                $code = trim((string) ($row[0] ?? ''));
+                if ($code === '') continue;
+
+                if (isset($existing[$code])) {
+                    $skipped++;
+                    continue;
+                }
+
+                CourseCode::create([
+                    'course_id' => $course->id,
+                    'code' => $code,
+                ]);
+                $existing[$code] = true;
+                $imported++;
+            }
+
+            return response()->json([
+                'message' => "$imported códigos importados" . ($skipped ? ", $skipped duplicados omitidos" : ''),
+                'codes' => $course->codes()->orderBy('code')->get()->pluck('code'),
+            ], Response::HTTP_OK);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Curso no encontrado'], Response::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al importar el archivo: '.$e->getMessage(),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
