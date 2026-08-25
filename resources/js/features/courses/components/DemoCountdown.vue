@@ -66,7 +66,7 @@ const closeModal = () => {
 
 const contactWhatsApp = () => {
     // Puedes personalizar el número y mensaje de WhatsApp aquí
-    const phoneNumber = '573054208045'; // Reemplazar con tu número
+    const phoneNumber = '573236871881'; // Reemplazar con tu número
     const message = encodeURIComponent('Hola, mi demo ha expirado y deseo obtener acceso completo al material de estudio.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     closeModal();

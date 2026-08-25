@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const whatsappNumber = '+573122372052';
+const whatsappNumber = '+573236871881';
 const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=Hola`;
 </script>
 

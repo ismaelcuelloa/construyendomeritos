@@ -2,8 +2,8 @@
 import { onMounted, ref } from 'vue';
 
 const showNotification = ref(false);
-const whatsappNumber = '+57 312 2372052';
-const whatsappUrl = 'https://wa.me/573122372052?text=Hola';
+const whatsappNumber = '+57 323 6871881';
+const whatsappUrl = 'https://wa.me/573236871881?text=Hola';
 
 const closeNotification = () => {
     showNotification.value = false;
