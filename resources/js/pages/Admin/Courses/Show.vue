@@ -40,6 +40,11 @@ const category = ref(props.course.category_id);
 const subcategory = ref(props.course.subcategory_id);
 const showSubcategorySelector = ref(props.course.category?.enable_subcategories ?? false);
 
+const code = ref((props.course as any).code ?? '');
+const grado = ref((props.course as any).grado ?? '');
+const courseCodes = ref<string[]>(Array.isArray((props.course as any).codes) ? (props.course as any).codes.map((c: any) => c.code) : []);
+const newCode = ref('');
+
 const description_title = ref('');
 const description_description = ref('');
 const description_price = ref('');
@@ -102,6 +107,18 @@ const price_formatted = computed(() => {
     }).format(Number(price.value));
 });
 
+const addCode = () => {
+    const trimmed = newCode.value.trim();
+    if (trimmed && !courseCodes.value.includes(trimmed)) {
+        courseCodes.value.push(trimmed);
+    }
+    newCode.value = '';
+};
+
+const removeCode = (c: string) => {
+    courseCodes.value = courseCodes.value.filter(item => item !== c);
+};
+
 const handleFileInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
 
@@ -129,6 +146,9 @@ const save = async () => {
                 published: published.value,
                 category_id: category.value,
                 subcategory_id: subcategory.value || null,
+                code: courseCodes.value[0] || code.value || null,
+                grado: grado.value || null,
+                codes: courseCodes.value,
             };
 
             await Client.put(`${Client.ADMIN_COURSES}/${props.course.id}`, params);
@@ -380,6 +400,39 @@ watch(targetCategoryId, () => {
                             </SelectCategories>
 
                             <SelectSubcategories v-if="showSubcategorySelector" :category-id="category" v-model="subcategory" class="mb-4" />
+
+                            <div class="course-field mb-4">
+                                <label class="field-label">Códigos de Convocatoria</label>
+                                <div class="codes-list">
+                                    <div v-for="(c, idx) in courseCodes" :key="idx" class="code-tag">
+                                        <span>{{ c }}</span>
+                                        <button type="button" class="code-tag-remove" @click="removeCode(c)" :disabled="saving">&times;</button>
+                                    </div>
+                                    <div v-if="courseCodes.length === 0" class="codes-empty">
+                                        No hay códigos adicionales.
+                                    </div>
+                                </div>
+                                <div class="codes-add-row mt-2">
+                                    <input
+                                        :disabled="saving"
+                                        type="text"
+                                        v-model="newCode"
+                                        class="codes-input"
+                                        placeholder="Ej: 108-2026"
+                                        @keyup.enter="addCode"
+                                    />
+                                    <Button :disabled="saving || !newCode.trim()" @click="addCode" size="sm" class="btn-add-code-modal">
+                                        Agregar
+                                    </Button>
+                                </div>
+                                <small class="info-text d-block mt-2">
+                                    <i class="feather-info"></i>
+                                    Agregue todos los códigos de convocatoria asociados a este curso.
+                                </small>
+                            </div>
+
+                            <Input :disabled="saving" title="Código y Grado" v-model="grado" placeholder="Ej: 3PU-15">
+                            </Input>
 
                             <Input :disabled="saving" title="Titulo" v-model="title">
                                 <template v-if="description_title.trim() != ''" #description>
@@ -767,6 +820,96 @@ watch(targetCategoryId, () => {
     padding: 24px;
     border-radius: 12px;
     border: 1px solid rgba(19, 58, 84, 0.08);
+}
+
+.course-field {
+    margin-bottom: 16px;
+}
+
+.field-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.codes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 36px;
+}
+
+.code-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #e8f0fe;
+    border: 1px solid #c4d7f2;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #11364f;
+}
+
+.code-tag-remove {
+    background: none;
+    border: none;
+    color: #dc2626;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 2px;
+}
+
+.code-tag-remove:hover {
+    color: #b91c1c;
+}
+
+.codes-empty {
+    color: #94a3b8;
+    font-size: 13px;
+    font-style: italic;
+    padding: 4px 0;
+}
+
+.codes-add-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.codes-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #11364f;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.codes-input:focus {
+    border-color: #133a54;
+    box-shadow: 0 0 0 2px rgba(19, 58, 84, 0.1);
+}
+
+.btn-add-code-modal {
+    background: linear-gradient(135deg, #133a54 0%, #1a5a80 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+}
+
+.btn-add-code-modal:hover {
+    background: linear-gradient(135deg, #1a5a80 0%, #133a54 100%) !important;
 }
 
 /* Info Text */
