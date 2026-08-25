@@ -119,6 +119,21 @@ const deleteCourse = async () => {
     deleting.value = false;
 };
 
+const copyingCourseId = ref<number | null>(null);
+
+const copyCourse = async (course: any) => {
+    copyingCourseId.value = course.id;
+    try {
+        await Client.post(`${Client.ADMIN_COURSES}/${course.id}/copy`, {});
+        Toast.success('Curso copiado con éxito');
+        getCourses();
+    } catch (e: any) {
+        Toast.error(e?.response?.data?.message || 'Error al copiar el curso');
+        console.log(e);
+    }
+    copyingCourseId.value = null;
+};
+
 onMounted(() => {
     getCourses();
 });
@@ -189,6 +204,16 @@ onMounted(() => {
                                         <Link :href="goToCurse(data.value)" class="rbt-btn-link left-icon" :title="isSuperUser() ? 'Editar' : 'Ver'">
                                             <i :class="isSuperUser() ? 'feather-edit' : 'feather-eye'"></i>
                                         </Link>
+                                        <button
+                                            v-if="isSuperUser()"
+                                            @click="copyCourse(data.value)"
+                                            class="rbt-btn-link left-icon"
+                                            type="button"
+                                            title="Copiar"
+                                            :disabled="copyingCourseId === data.value.id"
+                                        >
+                                            <i class="feather-copy"></i>
+                                        </button>
                                         <button
                                             v-if="isSuperUser()"
                                             @click="openDeleteModal(data.value)"
@@ -512,6 +537,11 @@ onMounted(() => {
     color: #ef4444 !important;
     background: rgba(239, 68, 68, 0.1) !important;
     border: 2px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.rbt-btn-link:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .rbt-btn-link.color-danger::before {

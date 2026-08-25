@@ -124,4 +124,34 @@ class CategoryController extends Controller
 
         return response()->json($data);
     }
+
+    /**
+     * Árbol de categorías con sus cursos y subcategorías (para copiar módulos/exámenes).
+     */
+    public function coursesTree(Request $request): JsonResponse
+    {
+        $categories = Category::query()
+            ->with([
+                'courses:id,title,slug,price,category_id,subcategory_id',
+                'subcategories.id,title,parent_id',
+                'subcategories.courses:id,title,slug,price,category_id,subcategory_id',
+            ])
+            ->orderBy('title')
+            ->get();
+
+        return response()->json($categories);
+    }
+
+    /**
+     * Árbol de categorías con subcategorías (vista general).
+     */
+    public function tree(Request $request): JsonResponse
+    {
+        $categories = Category::query()
+            ->with(['subcategories:id,title,parent_id'])
+            ->orderBy('title')
+            ->get();
+
+        return response()->json($categories);
+    }
 }

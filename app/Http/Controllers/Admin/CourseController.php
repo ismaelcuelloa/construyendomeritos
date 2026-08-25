@@ -59,6 +59,78 @@ class CourseController extends Controller
         return Inertia::render('Admin/Courses/Show', ['course' => $course]);
     }
 
+    public function copy(Request $request, string $id)
+    {
+        if (! auth()->user()->hasRole('super_user')) {
+            return response()->json([
+                'message' => 'Solo los super usuarios pueden copiar cursos',
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        try {
+            $course = Course::with([
+                'metadata',
+                'codes',
+                'modules.files.file',
+                'modules.exam.questions',
+            ])->findOrFail($id);
+
+            $copy = $course->replicate();
+            $copy->title = $course->title.' (copia)';
+            $copy->slug = $course->slug.'-copia-'.now()->timestamp;
+            $copy->published = false;
+            $copy->code = null;
+            $copy->save();
+
+            // Copiar códigos
+            foreach ($course->codes as $code) {
+                \App\Models\CourseCode::create([
+                    'course_id' => $copy->id,
+                    'code' => $code->code,
+                ]);
+            }
+
+            // Copiar metadata
+            if ($course->metadata) {
+                $metadataCopy = $course->metadata->replicate();
+                $metadataCopy->course_id = $copy->id;
+                $metadataCopy->save();
+            }
+
+            // Copiar módulos con archivos y exámenes
+            foreach ($course->modules as $module) {
+                $moduleCopy = $module->replicate();
+                $moduleCopy->course_id = $copy->id;
+                $moduleCopy->save();
+
+                foreach ($module->files as $file) {
+                    $fileCopy = $file->replicate();
+                    $fileCopy->module_id = $moduleCopy->id;
+                    $fileCopy->save();
+                }
+
+                if ($module->exam) {
+                    $examCopy = $module->exam->replicate();
+                    $examCopy->module_id = $moduleCopy->id;
+                    $examCopy->title = $module->exam->title.' (copia)';
+                    $examCopy->save();
+
+                    foreach ($module->exam->questions as $question) {
+                        $questionCopy = $question->replicate();
+                        $questionCopy->exam_id = $examCopy->id;
+                        $questionCopy->save();
+                    }
+                }
+            }
+
+            return response()->json(['course' => $copy], Response::HTTP_CREATED);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Curso no encontrado'], Response::HTTP_NOT_FOUND);
+        } catch (\Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
     public function metadata(Request $request, string $id)
     {
         // Solo super_user puede editar metadata de cursos
