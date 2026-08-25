@@ -51,8 +51,11 @@ class AuthenticatedSessionController extends Controller
                     'user_id' => $user->id,
                     'session_id' => $user->current_session_id,
                 ]);
-                $this->logoutPreviousSession($user);
+                $this->logoutPreviousSession($user, $request->session()->getId());
             }
+
+            // Evitar bloqueo por rate limiting en el flujo de force logout
+            \Illuminate\Support\Facades\RateLimiter::clear($request->throttleKey());
 
             // Proceder directamente con autenticación sin verificar sesión activa
             $request->authenticate();
@@ -76,7 +79,7 @@ class AuthenticatedSessionController extends Controller
                 $route = 'admin';
             }
 
-            return Inertia::location('/' . $route);
+            return redirect($route)->with('X-Inertia-Location', url($route));
         }
 
         // Si NO es force_logout, validar credenciales y verificar sesión activa
@@ -127,7 +130,8 @@ class AuthenticatedSessionController extends Controller
             $route = 'admin';
         }
 
-        return Inertia::location('/' . $route);
+        // Forzar una carga completa de la página para actualizar datos del usuario
+        return redirect($route)->with('X-Inertia-Location', url($route));
     }
 
     /**
@@ -152,7 +156,16 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
         $request->session()->flush();
 
-        return Inertia::location('/');
+        // Redirigir al dominio principal (borra cookies de sesión de ambos dominios)
+        $mainDomain = config('app.domain');
+        if ($mainDomain) {
+            $scheme = $request->isSecure() ? 'https://' : 'http://';
+            $target = $scheme . $mainDomain . '/';
+
+            return redirect()->away($target, 302, ['X-Inertia-Location' => $target]);
+        }
+
+        return redirect('/');
     }
 
     /**
@@ -173,9 +186,9 @@ class AuthenticatedSessionController extends Controller
     /**
      * Logout previous session
      */
-    private function logoutPreviousSession(User $user): void
+    private function logoutPreviousSession(User $user, ?string $currentSessionId = null): void
     {
-        if ($user->current_session_id) {
+        if ($user->current_session_id && $user->current_session_id !== $currentSessionId) {
             // Eliminar la sesión anterior de la tabla de sesiones
             \DB::table('sessions')
                 ->where('id', $user->current_session_id)
