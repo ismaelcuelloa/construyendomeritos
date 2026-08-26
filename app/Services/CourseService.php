@@ -61,6 +61,18 @@ class CourseService extends BaseService
             $this->initTransactions();
 
             $course = Course::find($id);
+
+            if (isset($data['title']) && $course->title !== $data['title']) {
+                $baseSlug = Str::slug($data['title']);
+                $slug = $baseSlug;
+                $counter = 1;
+                while (Course::where('slug', $slug)->where('id', '!=', $course->id)->exists()) {
+                    $slug = $baseSlug.'-'.$counter;
+                    $counter++;
+                }
+                $data['slug'] = $slug;
+            }
+
             $course->fill($data);
             $course->save();
 

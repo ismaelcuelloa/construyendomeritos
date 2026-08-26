@@ -8,6 +8,7 @@ use App\Models\CourseCode;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -105,9 +106,18 @@ class CourseController extends Controller
                 'modules.exam.questions',
             ])->findOrFail($id);
 
+            $newTitle = $course->title.' (copia)';
+            $baseSlug = Str::slug($newTitle);
+            $slug = $baseSlug;
+            $counter = 1;
+            while (Course::where('slug', $slug)->exists()) {
+                $slug = $baseSlug.'-'.$counter;
+                $counter++;
+            }
+
             $copy = $course->replicate();
-            $copy->title = $course->title.' (copia)';
-            $copy->slug = $course->slug.'-copia-'.now()->timestamp;
+            $copy->title = $newTitle;
+            $copy->slug = $slug;
             $copy->published = false;
             $copy->code = null;
             $copy->save();
