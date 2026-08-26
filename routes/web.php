@@ -41,6 +41,7 @@ Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'ind
 Route::get('/sitemap-pages.xml', [\App\Http\Controllers\SitemapController::class, 'pages']);
 Route::get('/sitemap-courses.xml', [\App\Http\Controllers\SitemapController::class, 'courses']);
 Route::get('/sitemap-categories.xml', [\App\Http\Controllers\SitemapController::class, 'categories']);
+Route::get('/sitemap-subcategories.xml', [\App\Http\Controllers\SitemapController::class, 'subcategories']);
 
 Route::resource('cursos', \App\Http\Controllers\CourseController::class);
 Route::resource('categorias', \App\Http\Controllers\CategoryController::class);

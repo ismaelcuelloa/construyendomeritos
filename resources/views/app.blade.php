@@ -12,44 +12,49 @@
         <meta name="keywords" content="Procuraduría General Nación 2026, concurso Procuraduría, material estudio Procuraduría, simulacros Procuraduría, guías Procuraduría, Construyendo Méritos con Excelencia, cargo público Procuraduría">
         <meta name="author" content="Construyendo Méritos con Excelencia">
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-        <meta name="theme-color" content="#ffffff">
+        <meta name="theme-color" content="#133a54">
+        <meta name="msapplication-TileColor" content="#133a54">
         <meta name="googlebot" content="index, follow">
         <link rel="canonical" href="{{ url()->current() }}">
         
-        <!-- Open Graph / Facebook -->
+        <!-- Open Graph / Facebook - Optimizado para Procuraduría + Material de Estudio -->
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Construyendo Méritos con Excelencia">
         <meta property="og:title" content="Materiales de estudio - Procuraduría General de la Nación 2026 | Construyendo Méritos con Excelencia">
         <meta property="og:description" content="Materiales de estudio para la Procuraduría General de la Nación 2026 - Construyendo Méritos con Excelencia. Simulacros y guías actualizadas para tu preparación.">
         <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:image" content="{{ asset('favicon.svg') }}">
-        <meta property="og:image:secure_url" content="{{ secure_asset('favicon.svg') }}">
-        <meta property="og:image:width" content="512">
-        <meta property="og:image:height" content="512">
-        <meta property="og:image:alt" content="Logo de Construyendo Méritos con Excelencia">
+        <meta property="og:image" content="{{ asset('assets/images/logo/logo SEO.png') }}">
+        <meta property="og:image:secure_url" content="{{ secure_asset('assets/images/logo/logo SEO.png') }}">
+        <meta property="og:image:width" content="1366">
+        <meta property="og:image:height" content="263">
+        <meta property="og:image:alt" content="Construyendo Méritos con Excelencia - Material de estudio Procuraduría General 2026">
         <meta property="og:locale" content="es_CO">
+        <meta property="og:locale:alternate" content="es_ES">
         
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@construyendomeritos">
         <meta name="twitter:title" content="Materiales de estudio - Procuraduría General de la Nación 2026 | Construyendo Méritos con Excelencia">
         <meta name="twitter:description" content="Materiales de estudio, simulacros y guías para la Procuraduría General de la Nación 2026 - Construyendo Méritos con Excelencia.">
-        <meta name="twitter:image" content="{{ asset('favicon.svg') }}">
-        <meta name="twitter:image:alt" content="Logo de Construyendo Méritos con Excelencia">
+        <meta name="twitter:image" content="{{ asset('assets/images/logo/logo SEO.png') }}">
+        <meta name="twitter:image:alt" content="Construyendo Méritos con Excelencia - Material Procuraduría 2026">
         
         <!-- Verificación (agregar cuando estén disponibles) -->
         <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE"> -->
         <!-- <meta name="facebook-domain-verification" content="YOUR_VERIFICATION_CODE"> -->
         
-        <!-- Structured Data (JSON-LD) para Google -->
+        <!-- Structured Data (JSON-LD) para Google - Procuraduría General 2026 -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
             "name": "Construyendo Méritos con Excelencia",
+            "alternateName": "Mérito Construyendo Excelencia",
             "url": "{{ url('/') }}",
-            "logo": "{{ asset('favicon.svg') }}",
+            "logo": "{{ asset('assets/images/logo/logo-color.png') }}",
+            "image": "{{ asset('assets/images/logo/logo SEO.png') }}",
             "description": "Material de estudio especializado para la Procuraduría General de la Nación 2026. Simulacros, guías y recursos actualizados de Construyendo Méritos con Excelencia.",
+            "keywords": "Procuraduría General, concurso Procuraduría 2026, material de estudio, simulacros, CNSC, empleo público",
             "sameAs": [
                 "https://www.facebook.com/guiasysimulacros",
                 "https://twitter.com/guiasysimulacros",
@@ -57,11 +62,40 @@
             ],
             "address": {
                 "@type": "PostalAddress",
-                "addressCountry": "CO"
+                "addressCountry": "CO",
+                "addressRegion": "Colombia"
             },
+            "areaServed": {
+                "@type": "Country",
+                "name": "Colombia"
+            },
+            "knowsAbout": ["Procuraduría General de la Nación", "Concurso de méritos", "CNSC", "Material de estudio", "Simulacros", "Empleo público", "Carrera administrativa"],
             "potentialAction": {
                 "@type": "SearchAction",
                 "target": "{{ url('/') }}/buscar?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Construyendo Méritos con Excelencia - Material Procuraduría 2026",
+            "alternateName": "Mérito Construyendo Excelencia",
+            "url": "{{ url('/') }}",
+            "inLanguage": "es-CO",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Construyendo Méritos con Excelencia",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('assets/images/logo/logo-color.png') }}"
+                }
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "{{ url('/') }}?search={search_term_string}",
                 "query-input": "required name=search_term_string"
             }
         }
@@ -80,9 +114,13 @@
 
         <title inertia>{{ config('app.name', 'Construyendo Méritos con Excelencia') }}</title>
 
+        <!-- Favicons - Optimizado para Google Search (requiere PNG multi-tamaño) -->
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="icon" href="/assets/images/logo/logo-color.png" type="image/png" sizes="512x512">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+        <link rel="apple-touch-icon" href="/assets/images/logo/logo-color.png" sizes="512x512">
+        <link rel="manifest" href="/site.webmanifest">
 
         <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />

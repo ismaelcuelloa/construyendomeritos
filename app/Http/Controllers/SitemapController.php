@@ -30,6 +30,12 @@ class SitemapController extends Controller
         $sitemap .= '<lastmod>'.now()->toAtomString().'</lastmod>';
         $sitemap .= '</sitemap>';
 
+        // Sitemap de subcategorías (importante para Contraloría + material de estudio)
+        $sitemap .= '<sitemap>';
+        $sitemap .= '<loc>'.url('/sitemap-subcategories.xml').'</loc>';
+        $sitemap .= '<lastmod>'.now()->toAtomString().'</lastmod>';
+        $sitemap .= '</sitemap>';
+
         $sitemap .= '</sitemapindex>';
 
         return response($sitemap, 200)
@@ -116,6 +122,40 @@ class SitemapController extends Controller
             $sitemap .= '<lastmod>'.$category->updated_at->toAtomString().'</lastmod>';
             $sitemap .= '<changefreq>weekly</changefreq>';
             $sitemap .= '<priority>0.7</priority>';
+            $sitemap .= '</url>';
+        }
+
+        $sitemap .= '</urlset>';
+
+        return response($sitemap, 200)
+            ->header('Content-Type', 'application/xml');
+    }
+
+    public function subcategories()
+    {
+        $sitemap = '<?xml version="1.0" encoding="UTF-8"?>';
+        $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+        $subcategories = \App\Models\Subcategory::query()
+            ->with('category')
+            ->published()
+            ->get();
+
+        foreach ($subcategories as $subcategory) {
+            if (! $subcategory->category) continue;
+            $url = '/categorias/'.$subcategory->category->slug.'/'.$subcategory->slug;
+            // Si tiene padre, usar ruta anidada
+            if ($subcategory->parent_id) {
+                $parent = \App\Models\Subcategory::find($subcategory->parent_id);
+                if ($parent) {
+                    $url = '/categorias/'.$subcategory->category->slug.'/'.$parent->slug.'/'.$subcategory->slug;
+                }
+            }
+            $sitemap .= '<url>';
+            $sitemap .= '<loc>'.url($url).'</loc>';
+            $sitemap .= '<lastmod>'.$subcategory->updated_at->toAtomString().'</lastmod>';
+            $sitemap .= '<changefreq>weekly</changefreq>';
+            $sitemap .= '<priority>0.6</priority>';
             $sitemap .= '</url>';
         }
 

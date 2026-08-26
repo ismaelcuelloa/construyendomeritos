@@ -56,7 +56,8 @@ class HandleInertiaRequests extends Middleware
             'seo' => [
                 'title' => 'Materiales de estudio - Procuraduría General de la Nación 2026 | Construyendo Méritos con Excelencia',
                 'description' => 'Materiales de estudio para la Procuraduría General de la Nación 2026 - Construyendo Méritos con Excelencia. Simulacros y guías actualizadas para tu preparación.',
-                'image' => asset('assets/images/logo/logo-default.png'),
+                'keywords' => 'Procuraduría General 2026, concurso Procuraduría, CNSC Procuraduría, material estudio Procuraduría, simulacros Procuraduría, Construyendo Méritos',
+                'image' => asset('assets/images/logo/logo SEO.png'),
                 'url' => $request->url(),
                 'type' => 'website',
             ],

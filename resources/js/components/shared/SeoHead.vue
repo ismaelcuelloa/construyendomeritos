@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const defaultImage = computed(() => {
-    return props.image || 'http://127.0.0.1:8000/assets/images/logo/logo SEO.png';
+    return props.image || '/assets/images/logo/logo SEO.png';
 });
 
 const robotsContent = computed(() => {
@@ -52,7 +52,7 @@ const robotsContent = computed(() => {
         <meta property="og:url" :content="url" v-if="url" />
         <meta property="og:type" :content="type" />
         <meta property="og:site_name" content="Construyendo Méritos con Excelencia" />
-        <meta property="og:locale" content="es_ES" />
+        <meta property="og:locale" content="es_CO" />
 
         <!-- Article Specific -->
         <meta property="article:published_time" :content="publishedTime" v-if="publishedTime && type === 'article'" />

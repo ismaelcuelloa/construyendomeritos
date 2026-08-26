@@ -79,7 +79,12 @@ class HomeController extends Controller
                 'cargo', 'ubicacion', 'salario_min', 'salario_max', 'per_page',
             ]),
             'seo' => [
+                'title' => 'Procuraduría General de la Nación 2026 | Material de Estudio, Simulacros y Guías | Construyendo Méritos con Excelencia',
+                'description' => 'Material de estudio para el concurso Procuraduría General de la Nación 2026 - Simulacros, guías y recursos CNSC actualizados de Construyendo Méritos con Excelencia.',
+                'keywords' => 'Procuraduría General 2026, concurso Procuraduría, CNSC Procuraduría, material estudio Procuraduría, simulacros Procuraduría, guías Procuraduría, empleo público Colombia, Construyendo Méritos',
                 'image' => asset('assets/images/logo/logo SEO.png'),
+                'url' => $request->url(),
+                'type' => 'website',
             ],
         ]);
     }

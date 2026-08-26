@@ -1,0 +1,38 @@
+{
+    "name": "Construyendo Méritos con Excelencia - Material de Estudio Procuraduría General 2026",
+    "short_name": "Méritos Excelencia",
+    "description": "Material de estudio, simulacros y guías para el concurso Procuraduría General de la Nación 2026 - CNSC",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/assets/images/logo/logo-color.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo/logo SEO.png",
+            "sizes": "1366x263",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "theme_color": "#133a54",
+    "background_color": "#ffe500",
+    "display": "standalone",
+    "start_url": "/",
+    "lang": "es-CO",
+    "scope": "/",
+    "categories": ["education", "business"]
+}
