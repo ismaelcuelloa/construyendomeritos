@@ -152,7 +152,6 @@ class CourseController extends Controller
                 if ($module->exam) {
                     $examCopy = $module->exam->replicate();
                     $examCopy->module_id = $moduleCopy->id;
-                    $examCopy->title = $module->exam->title.' (copia)';
                     $examCopy->save();
 
                     foreach ($module->exam->questions as $question) {

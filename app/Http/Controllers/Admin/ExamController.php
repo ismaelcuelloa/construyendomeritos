@@ -231,7 +231,6 @@ class ExamController extends Controller
         $original = Exam::with('questions')->findOrFail($request->exam_id);
         $copy = $original->replicate();
         $copy->module_id = $request->module_id;
-        $copy->title = $original->title . ' (copia)';
         $copy->save();
 
         foreach ($original->questions as $question) {
