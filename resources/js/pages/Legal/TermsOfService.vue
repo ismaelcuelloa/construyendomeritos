@@ -42,9 +42,6 @@ const page = usePage();
                                     <li>No utilizamos logotipos, escudos patrios, ni tipografías oficiales que puedan inducir a error sobre el origen del sitio.</li>
                                     <li>Todo material es de carácter preventivo y formativo, sin garantía de aprobación o nombramiento.</li>
                                 </ul>
-                                <p>
-                                    <strong>Versión corta para comunicaciones:</strong> <em>Aviso: Sitio web privado e independiente de la Procuraduría. No realizamos trámites ni inscripciones; ofrecemos únicamente material de estudio para la convocatoria.</em>
-                                </p>
                             </section>
 
                             <section class="legal-section">
